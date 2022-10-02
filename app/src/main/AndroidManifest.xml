@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Teraskill"
         tools:targetApi="31">
         <activity
-            android:name=".applying.ApplyingActivity"
+            android:name=".auth.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
