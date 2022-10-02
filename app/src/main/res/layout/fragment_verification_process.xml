@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".applying.VerificationProcessFragment"
+    android:background="@color/light_blue">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="176dp"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="82dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/group_2136" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_marginTop="28dp"
+        android:text="@string/string_document_processed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        style="@style/tittle_text" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_marginTop="14dp"
+        android:text="@string/string_desc_document_processed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        style="@style/desc_text" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_understand"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="40dp"
+        android:text="@string/understand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        style="@style/style_buttonSecondary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_applying"
+    app:startDestination="@id/applyingFragment">
+
+    <fragment
+        android:id="@+id/applyingFragment"
+        android:name="com.fauzancode.terraskil.applying.ApplyingFragment"
+        android:label="fragment_applying"
+        tools:layout="@layout/fragment_applying" />
+    <fragment
+        android:id="@+id/verificationProcessFragment"
+        android:name="com.fauzancode.terraskil.applying.VerificationProcessFragment"
+        android:label="fragment_verification_process"
+        tools:layout="@layout/fragment_verification_process" />
+    <fragment
+        android:id="@+id/verifiedFragment"
+        android:name="com.fauzancode.terraskil.applying.VerifiedFragment"
+        android:label="fragment_verified"
+        tools:layout="@layout/fragment_verified" />
+</navigation>

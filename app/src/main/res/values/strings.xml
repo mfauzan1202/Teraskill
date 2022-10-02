@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Teraskill</string>
+    <string name="email">Email</string>
+    <string name="password">Kata sandi</string>
+    <string name="fullname">Nama lengkap</string>
+    <string name="verify_password">Konfirmasi kata sandi</string>
+    <string name="signup">Daftar</string>
+    <string name="number_phone">Nomor hp</string>
+    <string name="string_register">Buat akun\nbaru kamu</string>
+    <string name="string_document_processed">Dokumen Sedang Kami Proses</string>
+    <string name="string_desc_document_processed">Tunggu hasil prosesnya lewat email\ndalam 1 x 24 jam ya</string>
+    <string name="understand">Mengerti</string>
+    <string name="string_verified">Dokumen Telah Terverifikasi</string>
+    <string name="string_desc_verified">Data yang telah anda berikan tersimpan\ndan terlindungi dengan aman di dalam\nsistem teraskill</string>
+    <string name="home">Home</string>
+    <string name="skill">Keahlian</string>
+    <string name="string_check_email">Silahkan cek email kamu</string>
+    <string name="string_desc_check_email">Kami telah mengirimkan kode OTP\nke emailmu</string>
+    <string name="done">Selesai</string>
+    <string name="terms_condition_agreement"><![CDATA[Saya menyutujui syarat & ketentuan]]></string>
+</resources>
