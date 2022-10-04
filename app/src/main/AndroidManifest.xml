@@ -27,6 +27,9 @@
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.applying.ApplyingActivity"
             android:exported="false" />
         <activity

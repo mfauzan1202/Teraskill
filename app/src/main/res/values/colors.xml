@@ -18,12 +18,8 @@
     <color name="soft_color">#E5E5E5</color>
     <color name="soft_color_2">#C4C4C4</color>
 
-    <color name="black">#292A2D</color>
-    <color name="light_gray">#E5E5E5</color>
-    <color name="gray">#696F79</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue">#1565D8</color>
-    <color name="light_blue">#EFF3F8</color>
     <color name="red">#F5222D</color>
     <color name="pink">#FFF1F0</color>
 </resources>
