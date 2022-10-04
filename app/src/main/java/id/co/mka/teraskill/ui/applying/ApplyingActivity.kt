@@ -1,4 +1,4 @@
-package id.co.mka.teraskill.applying
+package id.co.mka.teraskill.ui.applying
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

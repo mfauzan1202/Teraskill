@@ -1,26 +1,20 @@
-package id.co.mka.teraskill.auth
+package id.co.mka.teraskill.ui.auth.signup
 
 import android.app.AlertDialog
 import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import id.co.mka.teraskill.ApiConfig
-import id.co.mka.teraskill.ApiResponse
-import id.co.mka.teraskill.R
-import id.co.mka.teraskill.UserInfo
+import id.co.mka.teraskill.*
 import id.co.mka.teraskill.databinding.FragmentSignUpBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -66,7 +60,8 @@ class SignUpFragment : Fragment() {
 
             btnSignup.setOnClickListener {
                 /** Checking error state status on all Edit text **/
-                if (isErrorOrEmpty(tilName, etName) ||
+                if (
+                    isErrorOrEmpty(tilName, etName) ||
                     isErrorOrEmpty(tilPhoneNumber, etPhoneNumber) ||
                     isErrorOrEmpty(tilEmail, etEmail) ||
                     isErrorOrEmpty(tilPassword, etPassword) ||
@@ -113,67 +108,45 @@ class SignUpFragment : Fragment() {
             binding.apply {
                 when {
                     /** Remove error State when focused **/
-                    hasFocus -> removeError(textInputLayout, editText)
+                    hasFocus -> removeError(textInputLayout, editText, requireContext())
                     /** Checking empty state status on all Edit text **/
                     editText.text.toString().isEmpty() -> setError(
                         textInputLayout,
                         editText,
-                        "Field cannot be empty"
+                        "Field cannot be empty",
+                        requireContext()
                     )
                     editText == etPassword && editText.text.toString().length < 8 -> setError(
                         textInputLayout,
                         editText,
-                        "Password must be at least 8 characters"
+                        "Password must be at least 8 characters",
+                        requireContext()
                     )
                     editText == etVerifyPassword && editText.text.toString() != etPassword.text.toString() -> setError(
                         textInputLayout,
                         editText,
-                        "Password not match"
+                        "Password not match",
+                        requireContext()
                     )
                     editText == etEmail && !isEmailValid(editText.text.toString()) -> setError(
                         textInputLayout,
                         editText,
-                        "Please enter a valid email address"
+                        "Please enter a valid email address",
+                        requireContext()
                     )
                     editText == etName && editText.text.toString().length < 3 -> setError(
                         textInputLayout,
                         editText,
-                        "Name must be more than 3 characters and must not contain any number or symbol"
+                        "Name must be more than 3 characters and must not contain any number or symbol",
+                        requireContext()
                     )
                 }
             }
         }
     }
 
-    private fun setError(
-        textInputLayout: TextInputLayout,
-        editText: TextInputEditText,
-        message: String
-    ) {
-        textInputLayout.error = message
-        editText.background =
-            AppCompatResources.getDrawable(requireContext(), R.drawable.bg_textinput_error)
-    }
-
-    private fun removeError(textInputLayout: TextInputLayout, editText: TextInputEditText) {
-        textInputLayout.error = null
-        editText.background =
-            AppCompatResources.getDrawable(requireContext(), R.drawable.bg_textinput)
-    }
-
-    private fun isEmailValid(email: CharSequence?): Boolean {
-        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun isErrorOrEmpty(
-        textInputLayout: TextInputLayout,
-        editText: TextInputEditText
-    ): Boolean {
-        return editText.text.toString().isEmpty() || textInputLayout.error != null
-    }
-
     private fun handleSignUp(userInfo: UserInfo) {
-        ApiConfig.getApiService("http://10.0.2.2:5000/").addUser(
+        ApiConfig.getApiService().registerUser(
             userInfo
         ).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {

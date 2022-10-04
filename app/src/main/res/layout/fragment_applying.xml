@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".applying.ApplyingFragment">
+    tools:context=".ui.applying.ApplyingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -163,6 +163,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_submit"
             style="@style/style_buttonPrimary"
             android:layout_width="match_parent"
             android:layout_gravity="center"
