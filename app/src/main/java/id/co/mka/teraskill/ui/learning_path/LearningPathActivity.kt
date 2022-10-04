@@ -1,12 +1,12 @@
-package id.co.mka.teraskill.auth
+package id.co.mka.teraskill.ui.learning_path
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import id.co.mka.teraskill.R
 
-class AuthActivity : AppCompatActivity() {
+class LearningPathActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        setContentView(R.layout.activity_learning_path)
     }
 }

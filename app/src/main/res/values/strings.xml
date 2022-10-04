@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Teraskill</string>
+    <string name="selamat_datang_ayo_login_sekarang">Selamat Datang ! Ayo login sekarang</string>
+    <string name="masuk_dengan_google">Masuk dengan Google</string>
+    <string name="login">LOGIN</string>
     <string name="email">Email</string>
     <string name="password">Kata sandi</string>
     <string name="fullname">Nama lengkap</string>
@@ -18,4 +21,7 @@
     <string name="string_desc_check_email">Kami telah mengirimkan kode OTP\nke emailmu</string>
     <string name="done">Selesai</string>
     <string name="terms_condition_agreement"><![CDATA[Saya menyutujui syarat & ketentuan]]></string>
+    <string name="hello">Hallo,%1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

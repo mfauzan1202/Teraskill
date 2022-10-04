@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".applying.ApplyingActivity">
+    tools:context=".ui.applying.ApplyingActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:name="id.co.mka.teraskill.applying.ApplyingFragment"
+        android:name="id.co.mka.teraskill.ui.applying.ApplyingFragment"
         app:defaultNavHost="true"
         app:navGraph="@navigation/navigation_applying"/>
 
