@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HP/Teraskill Project/app/src/main/res/drawable/editrounded.xml" value="0.125" />
+        <entry key="..\:/Users/HP/Teraskill Project/app/src/main/res/layout/activity_auth.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/HP/Teraskill Project/app/src/main/res/layout/activity_learning_path.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/HP/Teraskill Project/app/src/main/res/layout/activity_splash.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/HP/Teraskill Project/app/src/main/res/layout/fragment_applying.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/HP/Teraskill Project/app/src/main/res/layout/fragment_sign_in.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/HP/Teraskill Project/app/src/main/res/layout/fragment_sign_up.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/bg_textinput.xml" value="0.1165" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/button_blue.xml" value="0.1165" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/button_outlined_blue.xml" value="0.1165" />
