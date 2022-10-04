@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.learning_path.LearningPathActivity">
+    tools:context=".ui.learning_path.LearningPathActivity"
+    android:background="@color/background_color">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profilePicture"
@@ -24,6 +25,7 @@
         android:text="@string/hello"
         android:fontFamily="@font/inter"
         android:textColor="@color/black"
+        android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/iv_profilePicture"
         app:layout_constraintStart_toEndOf="@id/iv_profilePicture"
