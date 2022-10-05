@@ -13,6 +13,10 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 fun setError(
     textInputLayout: TextInputLayout,
@@ -58,3 +62,8 @@ fun spannableString(view: TextView, textUnClickable: String, textClickable: Stri
     view.movementMethod = LinkMovementMethod.getInstance()
 }
 
+fun File.toMultipartBody(name: String): MultipartBody.Part = MultipartBody.Part.createFormData(
+    name,
+    this.name,
+    this.asRequestBody("image/*".toMediaTypeOrNull())
+)

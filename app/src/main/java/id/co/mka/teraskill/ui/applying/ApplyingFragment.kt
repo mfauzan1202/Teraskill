@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import id.co.mka.teraskill.ApiConfig
 import id.co.mka.teraskill.ApiResponse
 import id.co.mka.teraskill.databinding.FragmentApplyingBinding
+import id.co.mka.teraskill.toMultipartBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -53,7 +54,7 @@ class ApplyingFragment : Fragment() {
                     // Get the Uri of the selected file
                     val pdfUri = result.data?.data!!
                     // Get the file instance
-                    pdfFileLetterStatement = File(pdfUri.path!!)
+                    pdfFileLetterStatement = File(pdfUri.path!!).absoluteFile
                 }
             }
         val resultLauncher2 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -62,7 +63,7 @@ class ApplyingFragment : Fragment() {
                     // Get the Uri of the selected file
                     val pdfUri = result.data?.data!!
                     // Get the file instance
-                    pdfFileCV = File(pdfUri.path!!)
+                    pdfFileCV = File(pdfUri.path!!).absoluteFile
                 }
             }
 
@@ -92,12 +93,13 @@ class ApplyingFragment : Fragment() {
 
     private fun uploadFile(file1: File, file2: File) {
 
-        val requestBody1 = file1.asRequestBody("application/pdf".toMediaTypeOrNull())
-        val requestBody2 = file2.asRequestBody("application/pdf".toMediaTypeOrNull())
-        val body1 = MultipartBody.Part.createFormData("letter_statement", file1.name, requestBody1)
-        val body2 = MultipartBody.Part.createFormData("cv", file2.name, requestBody2)
+        val body = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addPart(file1.toMultipartBody("surat_pernyataan"))
+            .addPart(file2.toMultipartBody("cv"))
+            .build()
 
-        ApiConfig.getApiService().uploadFile(body1, body2).enqueue(object : Callback<ApiResponse> {
+        ApiConfig.getApiService().uploadFile(body).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful) {
                     val res = response.body()!!
@@ -110,5 +112,4 @@ class ApplyingFragment : Fragment() {
             }
         })
     }
-
 }
