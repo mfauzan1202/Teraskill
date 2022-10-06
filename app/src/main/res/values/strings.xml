@@ -24,4 +24,9 @@
     <string name="hello">Hallo,%1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="header_text_apply_mentor">Mohon dibaca Syarat dan Ketentuan\ngabung jadi mentor</string>
+    <string name="description_text_applu_mentor_1">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
+    <string name="description_text_apply_mentor_2">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
+    <string name="choose_file">Pilih File</string>
+    <string name="join_mentor">Gabung jadi mentor</string>
 </resources>

@@ -1,6 +1,7 @@
 package id.co.mka.teraskill
 
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -14,10 +15,8 @@ interface ApiService {
     @POST("login")
     fun loginUser(@Body response: UserInfo): Call<ApiResponse>
 
-    @Multipart
     @POST("gabung-mentor")
     fun uploadFile(
-        @Part surat_pernyataan: MultipartBody.Part,
-        @Part portofolio: MultipartBody.Part
+        @Body body: RequestBody
     ): Call<ApiResponse>
 }
