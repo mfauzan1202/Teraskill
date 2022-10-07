@@ -56,6 +56,7 @@
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/button_blue.xml" value="0.1165" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/button_menu.xml" value="0.1165" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/button_outlined_blue.xml" value="0.1165" />
+        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/button_setting.xml" value="0.1" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/editrounded.xml" value="0.1165" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/ic_add_photo.xml" value="0.1165" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/drawable/ic_error.xml" value="0.1165" />
@@ -63,13 +64,15 @@
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/font/inter.xml" value="0.21574074074074073" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_applying.xml" value="0.25" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_auth.xml" value="0.1890625" />
+        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_forgot_password.xml" value="0.2" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_learning_path.xml" value="0.25" />
-        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_main.xml" value="0.12840466926070038" />
+        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/activity_splash.xml" value="0.17028985507246377" />
-        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_applying.xml" value="0.25" />
+        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_applying.xml" value="0.12" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_login.xml" value="0.17028985507246377" />
+        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_setting.xml" value="0.22" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_sign_in.xml" value="0.21" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/fragment_verification_process.xml" value="0.25" />
@@ -78,6 +81,7 @@
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/item_class.xml" value="0.33" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/item_menu_button.xml" value="0.33" />
         <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/popup_register.xml" value="0.33" />
+        <entry key="..\:/Users/Us/AndroidStudioProjects/MKA/Teraskill/app/src/main/res/layout/tes.xml" value="0.17028985507246377" />
       </map>
     </option>
   </component>

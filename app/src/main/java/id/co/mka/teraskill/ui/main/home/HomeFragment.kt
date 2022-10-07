@@ -1,4 +1,4 @@
-package id.co.mka.teraskill.ui.main
+package id.co.mka.teraskill.ui.main.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

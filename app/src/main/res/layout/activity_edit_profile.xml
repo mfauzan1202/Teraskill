@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".ui.main.settings.editprofile.EditProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="66dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/edit_profil"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_desc_editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/edit_profile_desc"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@+id/tv_editProfile"
+            app:layout_constraintTop_toBottomOf="@+id/tv_editProfile" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="20dp"
+            app:cardCornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_desc_editProfile"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_profilePicture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_editPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/choose_file"
+                    android:textAllCaps="false"
+                    app:layout_constraintStart_toStartOf="@+id/iv_profilePicture"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_profilePicture" />
+
+                <TextView
+                    android:id="@+id/tv_editPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/no_file_choosen"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_editPhoto"
+                    app:layout_constraintStart_toEndOf="@+id/btn_editPhoto"
+                    app:layout_constraintTop_toTopOf="@+id/btn_editPhoto" />
+
+                <TextView
+                    android:id="@+id/tv_fullName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/fullname"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_editPhoto" />
+
+                <EditText
+                    android:id="@+id/et_fullName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/soft_color_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_fullName" />
+
+                <TextView
+                    android:id="@+id/tv_phoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/number_phone"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@+id/et_fullName" />
+
+                <EditText
+                    android:id="@+id/et_phoneNumber"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/soft_color_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_phoneNumber" />
+
+                <TextView
+                    android:id="@+id/tv_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/password"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@+id/et_phoneNumber" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/soft_color_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+
+                <TextView
+                    android:id="@+id/tv_verifyPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter"
+                    android:text="@string/verify_password"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+                <EditText
+                    android:id="@+id/et_verifyPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@color/soft_color_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_verifyPassword" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/style_buttonPrimary"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="24dp"
+                    android:paddingVertical="0dp"
+                    android:text="@string/save"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@+id/et_verifyPassword" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

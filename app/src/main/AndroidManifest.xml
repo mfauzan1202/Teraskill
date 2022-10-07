@@ -21,6 +21,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.main.settings.editprofile.EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".FirstSplashActivity"
             android:exported="false" />
         <activity
@@ -49,9 +52,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".ui.applying.ApplyingActivity" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
+        <activity
+            android:name=".ui.applying.ApplyingActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="false" />
@@ -59,7 +63,7 @@
             android:name=".ui.learning_path.LearningPathActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.applying.ApplyingActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

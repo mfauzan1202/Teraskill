@@ -15,7 +15,7 @@
     <string name="understand">Mengerti</string>
     <string name="string_verified">Dokumen Telah Terverifikasi</string>
     <string name="string_desc_verified">Data yang telah anda berikan tersimpan\ndan terlindungi dengan aman di dalam\nsistem teraskill</string>
-    <string name="home">Home</string>
+    <string name="home">Beranda</string>
     <string name="skill">Keahlian</string>
     <string name="string_check_email">Silahkan cek email kamu</string>
     <string name="string_desc_check_email">Kami telah mengirimkan kode OTP\nke emailmu</string>
@@ -29,4 +29,15 @@
     <string name="description_text_apply_mentor_2">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
     <string name="choose_file">Pilih File</string>
     <string name="join_mentor">Gabung jadi mentor</string>
+    <string name="settings">Pengaturan</string>
+    <string name="dashboard">Dashbor</string>
+    <string name="edit_profil">Edit Profil</string>
+    <string name="save">Simpan</string>
+    <string name="new_class">Kelas Terbaru</string>
+    <string name="learning_type">Jenis Pembelajaran</string>
+    <string name="menu">Menu</string>
+    <string name="transaction_history">Riwayat Transaksi</string>
+    <string name="log_out">Log Out</string>
+    <string name="edit_profile_desc">Masukkan informasi dengan data\nyang valid</string>
+    <string name="no_file_choosen">No File Choosen</string>
 </resources>

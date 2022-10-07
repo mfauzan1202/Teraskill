@@ -7,7 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="id.co.mka.teraskill.ui.main.HomeFragment"
+        android:name="id.co.mka.teraskill.ui.main.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="id.co.mka.teraskill.ui.main.settings.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>
