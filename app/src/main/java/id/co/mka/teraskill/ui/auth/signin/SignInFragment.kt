@@ -1,12 +1,10 @@
 package id.co.mka.teraskill.ui.auth.signin
 
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,12 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import id.co.mka.teraskill.*
-import id.co.mka.teraskill.data.responses.AuthResponse
 import id.co.mka.teraskill.databinding.FragmentSignInBinding
-import id.co.mka.teraskill.di.ApiConfig
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class SignInFragment : Fragment() {
@@ -40,6 +33,10 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val token = requireContext().getSharedPreferences("login", Context.MODE_PRIVATE).getString("token", "").toString()
+        if (token != "") {
+            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToMainActivity())
+        }
         binding.apply {
             focusChange(tilEmail, etEmail)
             focusChange(tilPassword, etPassword)
