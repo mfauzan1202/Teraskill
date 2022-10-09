@@ -1,6 +1,7 @@
 package id.co.mka.teraskill.ui.auth.signin
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import id.co.mka.teraskill.*
+import id.co.mka.teraskill.data.responses.AuthResponse
 import id.co.mka.teraskill.databinding.FragmentSignInBinding
+import id.co.mka.teraskill.di.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +26,7 @@ class SignInFragment : Fragment() {
 
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: SignInViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,12 +52,24 @@ class SignInFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    handleSignIn(
+                    viewModel.loginUser(
                         UserInfo(
                             email = etEmail.text.toString(),
                             password = etPassword.text.toString(),
                         )
-                    )
+                    ).observe(viewLifecycleOwner) {
+                        if (it != null) {
+                            requireContext().getSharedPreferences("login", Context.MODE_PRIVATE)
+                                .edit()
+                                .putString("token", it.uuid)
+                                .putString("name", it.name)
+                                .apply()
+                            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToMainActivity())
+                        } else {
+                            Toast.makeText(requireContext(), "Login Failed", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                    }
                 }
             }
 
@@ -95,35 +112,5 @@ class SignInFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun handleSignIn(userInfo: UserInfo) {
-        ApiConfig.getApiService().loginUser(
-            userInfo
-        ).enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-
-                    if (responseBody != null) {
-                        val dialogView = LayoutInflater.from(requireContext())
-                            .inflate(R.layout.dialog_register, null)
-                        val dialogBuilder = AlertDialog.Builder(requireContext())
-                            .setView(dialogView)
-                            .show()
-
-                        dialogView.findViewById<Button>(R.id.btn_done).setOnClickListener {
-                            dialogBuilder.dismiss()
-                        }
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
-            }
-
-        })
-
     }
 }

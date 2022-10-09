@@ -10,15 +10,14 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import id.co.mka.teraskill.*
 import id.co.mka.teraskill.databinding.FragmentSignUpBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SignUpFragment : Fragment() {
 
@@ -27,6 +26,8 @@ class SignUpFragment : Fragment() {
 
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: SignUpViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +74,7 @@ class SignUpFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    handleSignUp(
+                    viewModel.signUpUser(
                         UserInfo(
                             etName.text.toString(),
                             etPhoneNumber.text.toString(),
@@ -81,7 +82,26 @@ class SignUpFragment : Fragment() {
                             etPassword.text.toString(),
                             etVerifyPassword.text.toString()
                         )
-                    )
+                    ).observe(viewLifecycleOwner) {
+                        if (it != null) {
+                            val dialogView = LayoutInflater.from(requireContext())
+                                .inflate(R.layout.dialog_register, null)
+                            val dialogBuilder = AlertDialog.Builder(requireContext())
+                                .setView(dialogView)
+                                .show()
+
+                            dialogView.findViewById<Button>(R.id.btn_done).setOnClickListener {
+                                dialogBuilder.dismiss()
+                                findNavController().popBackStack()
+                            }
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "Sign Up Failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
                 }
             }
 
@@ -143,35 +163,5 @@ class SignUpFragment : Fragment() {
                 }
             }
         }
-    }
-
-    private fun handleSignUp(userInfo: UserInfo) {
-        ApiConfig.getApiService().registerUser(
-            userInfo
-        ).enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-
-                    if (responseBody != null) {
-                        val dialogView = LayoutInflater.from(requireContext())
-                            .inflate(R.layout.dialog_register, null)
-                        val dialogBuilder = AlertDialog.Builder(requireContext())
-                            .setView(dialogView)
-                            .show()
-
-                        dialogView.findViewById<Button>(R.id.btn_done).setOnClickListener {
-                            dialogBuilder.dismiss()
-                        }
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
-            }
-
-        })
-
     }
 }

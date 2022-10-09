@@ -1,10 +1,12 @@
 package id.co.mka.teraskill.ui.main.home
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import id.co.mka.teraskill.R
 import id.co.mka.teraskill.databinding.FragmentHomeBinding
 
@@ -25,6 +27,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val name = requireContext().getSharedPreferences("login", MODE_PRIVATE).getString("name", "").toString()
+        val nickName = name.split(" ")[0]
+
+        binding.apply {
+            tvName.text = resources.getString(R.string.hello, nickName)
+        }
     }
 
     override fun onDestroy() {
