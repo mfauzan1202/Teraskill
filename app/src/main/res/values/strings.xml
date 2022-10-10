@@ -21,9 +21,7 @@
     <string name="string_desc_check_email">Kami telah mengirimkan kode OTP\nke emailmu</string>
     <string name="done">Selesai</string>
     <string name="terms_condition_agreement"><![CDATA[Saya menyutujui syarat & ketentuan]]></string>
-    <string name="hello">Hallo,%1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello">Hallo, %1$s</string>
     <string name="header_text_apply_mentor">Mohon dibaca Syarat dan Ketentuan\ngabung jadi mentor</string>
     <string name="description_text_applu_mentor_1">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
     <string name="description_text_apply_mentor_2">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
@@ -39,5 +37,9 @@
     <string name="transaction_history">Riwayat Transaksi</string>
     <string name="log_out">Log Out</string>
     <string name="edit_profile_desc">Masukkan informasi dengan data\nyang valid</string>
-    <string name="no_file_choosen">No File Choosen</string>
+    <string name="no_file_choosen">No File Chosen</string>
+    <string name="tab_text_1">Progress Kelasmu</string>
+    <string name="tab_text_2">Kelas Saya</string>
+    <string name="tab_text_3">Portofolio</string>
+    <string name="desc_transaction_history">Cek histori transaksi anda</string>
 </resources>
