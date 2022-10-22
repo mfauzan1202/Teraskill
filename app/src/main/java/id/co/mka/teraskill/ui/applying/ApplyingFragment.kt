@@ -1,38 +1,34 @@
 package id.co.mka.teraskill.ui.applying
 
-import android.Manifest
-import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import id.co.mka.teraskill.ApiConfig
-import id.co.mka.teraskill.ApiResponse
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import id.co.mka.teraskill.R
 import id.co.mka.teraskill.databinding.FragmentApplyingBinding
-import id.co.mka.teraskill.toMultipartBody
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import id.co.mka.teraskill.utils.Preferences
+import id.co.mka.teraskill.utils.showLoading
+import id.co.mka.teraskill.utils.spannableString
+import id.co.mka.teraskill.utils.uriToFile
 import java.io.File
-
 
 class ApplyingFragment : Fragment() {
 
     private var _binding: FragmentApplyingBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var pdfFileLetterStatement: File
-    private lateinit var pdfFileCV: File
+    private var pdfFileLetterStatement: File? = null
+    private var pdfFileCV: File? = null
 
-    private val EXTERNAL_STORAGE_PERMISSION_CODE = 23
+    private val viewModel: ApplyingViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,43 +41,82 @@ class ApplyingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            EXTERNAL_STORAGE_PERMISSION_CODE
-        )
-        val resultLauncher1 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                // Initialize result data
-                if (result.resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    val pdfUri = result.data?.data!!
-                    // Get the file instance
-                    pdfFileLetterStatement = File(pdfUri.path!!).absoluteFile
-                }
-            }
-        val resultLauncher2 = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                // Initialize result data
-                if (result.resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    val pdfUri = result.data?.data!!
-                    // Get the file instance
-                    pdfFileCV = File(pdfUri.path!!).absoluteFile
-                }
-            }
 
-        val pdfIntent = Intent(Intent.ACTION_GET_CONTENT)
-        pdfIntent.type = "application/pdf"
-        pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Pendaftaran Jadi Mentor"
+        val token = Preferences(requireContext()).getValues("token")
 
         binding.apply {
-            btnUpload.setOnClickListener {
-                resultLauncher1.launch(pdfIntent)
+
+            btnChooseLetter.setOnClickListener {
+                selectPDF(it)
             }
 
-            btnUpload2.setOnClickListener {
-                resultLauncher2.launch(pdfIntent)
+            btnChooseCv.setOnClickListener {
+                selectPDF(it)
+            }
+
+            spannableString(
+                tvHeading,
+                "Mohon dibaca Syarat dan Ketentuan\ngabung jadi mentor",
+                13,
+                33,
+                R.color.secondary_color
+            ) {
+                val url =
+                    "https://docs.google.com/document/d/1DHfWKSlxPtSixyj8cfV04XNEbGWrTlgJ96P2vjC0fRE/edit?usp=drivesdk"
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                startActivity(intent)
+            }
+
+            spannableString(
+                tvChooseLetter,
+                "Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini",
+                33,
+                49,
+                R.color.primary_color
+            ) {
+                val url =
+                    "https://docs.google.com/document/d/18l-WW-Bo-kPrgHNDPt6QZPgHRbHedG-Kk6ki8hdtCP0/edit?usp=drivesdk"
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(url)
+                startActivity(intent)
             }
 
             btnSubmit.setOnClickListener {
-                uploadFile(pdfFileLetterStatement, pdfFileCV)
+                val job = etSkill.text.toString().trim()
+                showLoading(true, requireActivity())
+                when {
+                    cbAgreement.isChecked && pdfFileLetterStatement != null && pdfFileCV != null -> {
+                        viewModel.uploadFile(token!!, job, pdfFileLetterStatement!!, pdfFileCV!!)
+                            .observe(viewLifecycleOwner) {
+                                if (it != null) {
+                                    showLoading(false, requireActivity())
+                                    findNavController().navigate(ApplyingFragmentDirections.actionApplyingFragmentToVerificationProcessFragment())
+                                } else {
+                                    showLoading(false, requireActivity())
+                                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+                    }
+                    cbAgreement.isChecked -> {
+                        showLoading(false, requireActivity())
+                        Toast.makeText(
+                            requireContext(),
+                            "Silahkan pilih file untuk diupload terlebih dahulu",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    else -> {
+                        showLoading(false, requireActivity())
+                        Toast.makeText(
+                            requireContext(),
+                            "Silahkan centang persetujuan terlebih dahulu",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
             }
         }
     }
@@ -91,25 +126,36 @@ class ApplyingFragment : Fragment() {
         _binding = null
     }
 
-    private fun uploadFile(file1: File, file2: File) {
+    private fun selectPDF(view: View) {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "application/pdf"
+        val chooser = Intent.createChooser(intent, "Choose PDF file")
 
-        val body = MultipartBody.Builder()
-            .setType(MultipartBody.FORM)
-            .addPart(file1.toMultipartBody("surat_pernyataan"))
-            .addPart(file2.toMultipartBody("cv"))
-            .build()
-
-        ApiConfig.getApiService().uploadFile(body).enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    val res = response.body()!!
-                    Toast.makeText(requireContext(), "Succes"+ res.msg, Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "Error" + t.message, Toast.LENGTH_SHORT).show()
-            }
-        })
+        if (view == binding.btnChooseLetter) {
+            launcherIntentStatementLetter.launch(chooser)
+        } else {
+            launcherIntentCV.launch(chooser)
+        }
     }
+
+    private val launcherIntentStatementLetter = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            val selectedFile: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedFile, requireContext())
+            pdfFileLetterStatement = myFile
+        }
+    }
+
+    private val launcherIntentCV = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            val selectedFile: Uri = result.data?.data as Uri
+            val myFile = uriToFile(selectedFile, requireContext())
+            pdfFileCV = myFile
+        }
+    }
+
 }

@@ -23,8 +23,8 @@
     <string name="terms_condition_agreement"><![CDATA[Saya menyutujui syarat & ketentuan]]></string>
     <string name="hello">Hallo, %1$s</string>
     <string name="header_text_apply_mentor">Mohon dibaca Syarat dan Ketentuan\ngabung jadi mentor</string>
-    <string name="description_text_applu_mentor_1">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
-    <string name="description_text_apply_mentor_2">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
+    <string name="description_text_applu_mentor_letter">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
+    <string name="description_text_apply_mentor_cv">Upload file sertifikat / portofolio keahlian dibawah ini</string>
     <string name="choose_file">Pilih File</string>
     <string name="join_mentor">Gabung jadi mentor</string>
     <string name="settings">Pengaturan</string>
@@ -42,4 +42,10 @@
     <string name="tab_text_2">Kelas Saya</string>
     <string name="tab_text_3">Portofolio</string>
     <string name="desc_transaction_history">Cek histori transaksi anda</string>
+    <string name="progress_video">%1$s Materi</string>
+    <string name="verified">Terverifikasi</string>
+    <string name="verifying">Proses Verifikasi</string>
+    <string name="price_format">Rp %1$s</string>
+    <string name="total_modul">%1$s Kelas tertulis</string>
+    <string name="total_video">%1$s Materi Video</string>
 </resources>

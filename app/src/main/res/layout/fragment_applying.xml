@@ -45,6 +45,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -53,7 +54,6 @@
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_heading"
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
-                    app:layout_constraintStart_toOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -74,14 +74,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/iv_heading">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_name"
+                        android:id="@+id/et_skill"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tv_choose_letter"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
@@ -89,7 +89,7 @@
                     android:layout_marginTop="34dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/inter_medium"
-                    android:text="@string/description_text_applu_mentor_1"
+                    android:text="@string/description_text_applu_mentor_letter"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -107,10 +107,10 @@
                     android:paddingVertical="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3">
+                    app:layout_constraintTop_toBottomOf="@+id/tv_choose_letter">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_upload"
+                        android:id="@+id/btn_choose_letter"
                         style="@style/style_buttonPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,10 +128,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/inter_medium"
-                    android:text="@string/description_text_apply_mentor_2"
+                    android:text="@string/description_text_apply_mentor_cv"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +153,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView4">
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_upload2"
+                        android:id="@+id/btn_choose_cv"
                         style="@style/style_buttonPrimary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -166,14 +166,15 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <CheckBox
-                    android:id="@+id/checkBox2"
+                    android:id="@+id/cb_agreement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/til_name2" />
+                    app:layout_constraintTop_toBottomOf="@+id/til_name2"
+                    android:buttonTint="@color/primary_color"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -181,9 +182,20 @@
                     android:fontFamily="@font/inter"
                     android:text="@string/terms_condition_agreement"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/checkBox2"
-                    app:layout_constraintStart_toEndOf="@+id/checkBox2"
-                    app:layout_constraintTop_toTopOf="@+id/checkBox2" />
+                    app:layout_constraintBottom_toBottomOf="@+id/cb_agreement"
+                    app:layout_constraintStart_toEndOf="@+id/cb_agreement"
+                    app:layout_constraintTop_toTopOf="@+id/cb_agreement" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -198,7 +210,6 @@
             android:text="@string/join_mentor"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"/>
+            android:layout_marginBottom="32dp" />
     </LinearLayout>
-
 </ScrollView>

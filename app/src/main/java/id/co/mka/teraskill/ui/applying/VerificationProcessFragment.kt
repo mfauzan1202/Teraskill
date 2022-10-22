@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import id.co.mka.teraskill.databinding.FragmentVerificationProcessBinding
 
 
@@ -23,7 +25,13 @@ class VerificationProcessFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            btnUnderstand.setOnClickListener {
+                findNavController().navigate(VerificationProcessFragmentDirections.actionVerificationProcessFragmentToVerifiedFragment())
+            }
+        }
 
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Verifikasi Jadi Mentor"
     }
 
     override fun onDestroy() {

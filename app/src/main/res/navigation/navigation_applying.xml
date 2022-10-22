@@ -7,17 +7,25 @@
 
     <fragment
         android:id="@+id/applyingFragment"
-        android:name="com.fauzancode.terraskil.applying.ApplyingFragment"
+        android:name="id.co.mka.teraskill.ui.applying.ApplyingFragment"
         android:label="fragment_applying"
-        tools:layout="@layout/fragment_applying" />
+        tools:layout="@layout/fragment_applying" >
+        <action
+            android:id="@+id/action_applyingFragment_to_verificationProcessFragment"
+            app:destination="@id/verificationProcessFragment" />
+    </fragment>
     <fragment
         android:id="@+id/verificationProcessFragment"
-        android:name="com.fauzancode.terraskil.applying.VerificationProcessFragment"
+        android:name="id.co.mka.teraskill.ui.applying.VerificationProcessFragment"
         android:label="fragment_verification_process"
-        tools:layout="@layout/fragment_verification_process" />
+        tools:layout="@layout/fragment_verification_process" >
+        <action
+            android:id="@+id/action_verificationProcessFragment_to_verifiedFragment"
+            app:destination="@id/verifiedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/verifiedFragment"
-        android:name="com.fauzancode.terraskil.applying.VerifiedFragment"
+        android:name="id.co.mka.teraskill.ui.applying.VerifiedFragment"
         android:label="fragment_verified"
         tools:layout="@layout/fragment_verified" />
 </navigation>
