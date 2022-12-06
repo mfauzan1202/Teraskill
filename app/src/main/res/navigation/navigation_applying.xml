@@ -3,21 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_applying"
-    app:startDestination="@id/applyingFragment">
+    app:startDestination="@id/termsAndConditionFragment">
 
     <fragment
-        android:id="@+id/applyingFragment"
-        android:name="com.fauzancode.terraskil.applying.ApplyingFragment"
-        android:label="fragment_applying"
-        tools:layout="@layout/fragment_applying" />
-    <fragment
         android:id="@+id/verificationProcessFragment"
-        android:name="com.fauzancode.terraskil.applying.VerificationProcessFragment"
+        android:name="id.co.mka.teraskill.ui.applying.VerificationProcessFragment"
         android:label="fragment_verification_process"
-        tools:layout="@layout/fragment_verification_process" />
+        tools:layout="@layout/fragment_verification_process" >
+        <action
+            android:id="@+id/action_verificationProcessFragment_to_verifiedFragment"
+            app:destination="@id/verifiedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/verifiedFragment"
-        android:name="com.fauzancode.terraskil.applying.VerifiedFragment"
+        android:name="id.co.mka.teraskill.ui.applying.VerifiedFragment"
         android:label="fragment_verified"
         tools:layout="@layout/fragment_verified" />
+    <fragment
+        android:id="@+id/termsAndConditionFragment"
+        android:name="id.co.mka.teraskill.ui.applying.TermsAndConditionFragment"
+        android:label="fragment_terms_and_condition"
+        tools:layout="@layout/fragment_terms_and_condition" >
+        <action
+            android:id="@+id/action_termsAndConditionFragment_to_biodataFragment"
+            app:destination="@id/biodataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/biodataFragment"
+        android:name="id.co.mka.teraskill.ui.applying.biodata.BioDataFragment"
+        android:label="fragment_biodata"
+        tools:layout="@layout/fragment_biodata" >
+        <action
+            android:id="@+id/action_biodataFragment_to_uploadCVFragment"
+            app:destination="@id/uploadCVFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadCVFragment"
+        android:name="id.co.mka.teraskill.ui.applying.upload_cv.UploadCVFragment"
+        android:label="fragment_upload_cv"
+        tools:layout="@layout/fragment_upload_cv" >
+        <action
+            android:id="@+id/action_uploadCVFragment_to_verificationProcessFragment"
+            app:destination="@id/verificationProcessFragment" />
+        <argument
+            android:name="data"
+            app:argType="id.co.mka.teraskill.data.dataclass.ApplyData" />
+    </fragment>
 </navigation>

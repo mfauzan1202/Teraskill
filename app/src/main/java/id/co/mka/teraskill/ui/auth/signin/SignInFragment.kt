@@ -1,32 +1,30 @@
 package id.co.mka.teraskill.ui.auth.signin
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import id.co.mka.teraskill.*
+import id.co.mka.teraskill.R
+import id.co.mka.teraskill.data.dataclass.UserInfo
 import id.co.mka.teraskill.databinding.FragmentSignInBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
+import id.co.mka.teraskill.utils.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignInFragment : Fragment() {
 
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: SignInViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
         return binding.root
@@ -35,29 +33,30 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val preferences = Preferences(requireContext())
+        preferences.setValues("onboarding", "1")
+
         binding.apply {
             focusChange(tilEmail, etEmail)
             focusChange(tilPassword, etPassword)
 
             btnLogin.setOnClickListener {
+                checkError(tilEmail, etEmail)
+                checkError(tilPassword, etPassword)
                 if (isErrorOrEmpty(tilEmail, etEmail) || isErrorOrEmpty(tilPassword, etPassword)) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Please fill the field with the right data",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    return@setOnClickListener
                 } else {
-                    handleSignIn(
-                        UserInfo(
-                            email = etEmail.text.toString(),
-                            password = etPassword.text.toString(),
-                        )
-                    )
+                    showLoading(true, requireContext())
+                    uploadData()
                 }
             }
 
-            spannableString(tvRegister, "Tidak punya akun ? ", "Daftar") {
+            spannableString(tvRegister, "Tidak punya akun? Daftar", 18, 24, R.color.primary_color) {
                 findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
+            }
+
+            tvForgotPassword.setOnClickListener {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToForgotPasswordFragment())
             }
         }
     }
@@ -68,62 +67,90 @@ class SignInFragment : Fragment() {
     }
 
     private fun focusChange(textInputLayout: TextInputLayout, editText: TextInputEditText) {
+
         editText.setOnFocusChangeListener { _, hasFocus ->
-            binding.apply {
-                when {
-                    /** Remove error State when focused **/
-                    hasFocus -> removeError(textInputLayout, editText, requireContext())
-                    /** Checking empty state status on all Edit text **/
-                    editText.text.toString().isEmpty() -> setError(
-                        textInputLayout,
-                        editText,
-                        "Field cannot be empty",
-                        requireContext()
-                    )
-                    editText == etPassword && editText.text.toString().length < 8 -> setError(
-                        textInputLayout,
-                        editText,
-                        "Password must be at least 8 characters",
-                        requireContext()
-                    )
-                    editText == etEmail && !isEmailValid(editText.text.toString()) -> setError(
-                        textInputLayout,
-                        editText,
-                        "Please enter a valid email address",
-                        requireContext()
-                    )
+            if (hasFocus) {
+                if (textInputLayout.error != null) {
+                    editText.afterTextChanged {
+                        removeError(textInputLayout, editText, requireContext())
+                    }
+                } else {
+                    removeError(textInputLayout, editText, requireContext())
+                }
+            } else {
+                checkError(textInputLayout, editText)
+            }
+        }
+    }
+
+    private fun checkError(textInputLayout: TextInputLayout, editText: TextInputEditText) {
+        binding.apply {
+            when {
+                /** Checking empty state status on all Edit text **/
+                editText.text.toString().isEmpty() -> setError(
+                    textInputLayout,
+                    editText,
+                    "Kolom tidak boleh kosong",
+                    requireContext()
+                )
+                editText == etPassword && editText.text.toString().length < 8 -> setError(
+                    textInputLayout,
+                    editText,
+                    "Tolong masukkan Password paling sedikit 8 karakter",
+                    requireContext()
+                )
+                editText == etEmail && !isEmailValid(editText.text.toString()) -> setError(
+                    textInputLayout,
+                    editText,
+                    "Tolong masukkan email yang valid",
+                    requireContext()
+                )
+            }
+        }
+    }
+
+    private fun uploadData() {
+        val preferences = Preferences(requireContext())
+        binding.apply {
+            viewModel.loginUser(
+                UserInfo(
+                    email = etEmail.text.toString(),
+                    password = etPassword.text.toString(),
+                )
+            ).observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Success -> {
+                        showLoading(false, requireContext())
+                        if (it.data != null) {
+                            preferences.apply {
+                                setValues("uuid", it.data.uuid)
+                                setValues("name", it.data.name)
+                                setValues("token", it.data.accessToken)
+                                setValues("password", etPassword.text.toString())
+                                setValues("no_hp", it.data.no_hp)
+                                setValues("confpassword", etPassword.text.toString())
+                                setValues("email", it.data.email)
+                                setValues("avatar", it.data.avatar)
+                            }
+                            showLoading(false, requireContext())
+                            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToMainActivity())
+                            activity?.finish()
+                        }
+                    }
+                    is Resource.Error -> {
+                        showLoading(false, requireContext())
+                        Toast.makeText(
+                            requireContext(),
+                            "Email atau Password salah",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    is Resource.Loading -> {
+                        showLoading(true, requireContext())
+                    }
                 }
             }
         }
     }
 
-    private fun handleSignIn(userInfo: UserInfo) {
-        ApiConfig.getApiService().loginUser(
-            userInfo
-        ).enqueue(object : Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-
-                    if (responseBody != null) {
-                        val dialogView = LayoutInflater.from(requireContext())
-                            .inflate(R.layout.dialog_register, null)
-                        val dialogBuilder = AlertDialog.Builder(requireContext())
-                            .setView(dialogView)
-                            .show()
-
-                        dialogView.findViewById<Button>(R.id.btn_done).setOnClickListener {
-                            dialogBuilder.dismiss()
-                        }
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
-            }
-
-        })
-
-    }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import id.co.mka.teraskill.databinding.ActivityApplyingBinding
 
+
 class ApplyingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityApplyingBinding
@@ -13,6 +14,13 @@ class ApplyingActivity : AppCompatActivity() {
         binding = ActivityApplyingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".ui.main.settings.transaction_history.TransactionHistoryActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/ib_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_back_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_transactionHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/transaction_history"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ib_Back" />
+
+        <TextView
+            android:id="@+id/tv_desc_transactionHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter"
+            android:text="@string/desc_transaction_history"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/tv_transactionHistory"
+            app:layout_constraintTop_toBottomOf="@id/tv_transactionHistory" />
+
+        <EditText
+            android:id="@+id/et_startDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/button_outlined_blue"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:paddingVertical="5dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="8dp"
+            android:fontFamily="@font/inter"
+            android:textSize="14sp"
+            android:focusable="false"
+            android:textColor="@color/black"
+            tools:text="5 Oktober 2022"
+            app:layout_constraintEnd_toStartOf="@+id/et_endDate"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_transactionHistory" />
+
+        <EditText
+            android:id="@+id/et_endDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="27dp"
+            android:background="@drawable/button_outlined_blue"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:paddingVertical="5dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="8dp"
+            android:focusable="false"
+            android:fontFamily="@font/inter"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/et_startDate"
+            app:layout_constraintTop_toTopOf="@id/et_startDate" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_transactionHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="20dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_startDate"
+            tools:listitem="@layout/item_transaction_history" />
+
+        <ImageView
+            android:id="@+id/iv_empty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="75dp"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="75dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/group_2147"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_startDate" />
+
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/inter"
+            android:text="Riwayat transaksi tidak ditemukan"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_empty" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

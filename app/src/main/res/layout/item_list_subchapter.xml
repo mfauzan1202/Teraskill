@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_list_subchapter"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    android:backgroundTint="@color/soft_color_3"
+    app:cardCornerRadius="10dp">
+
+    <TextView
+        android:id="@+id/tv_title_subchapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/inter_regular"
+        android:textColor="@color/black"
+        tools:text="Dummy List Materi" />
+
+    <ImageView
+        android:id="@+id/iv_check_subchapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginVertical="12dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_check"
+        android:visibility="gone"/>
+
+</androidx.cardview.widget.CardView>

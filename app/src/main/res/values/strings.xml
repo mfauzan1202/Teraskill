@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Teraskill</string>
-    <string name="selamat_datang_ayo_login_sekarang">Selamat Datang ! Ayo login sekarang</string>
+    <string name="selamat_datang_ayo_login_sekarang">Selamat Datang  !\nAyo login sekarang</string>
     <string name="masuk_dengan_google">Masuk dengan Google</string>
-    <string name="login">LOGIN</string>
+    <string name="login">Masuk</string>
     <string name="email">Email</string>
     <string name="password">Kata sandi</string>
     <string name="fullname">Nama lengkap</string>
@@ -15,13 +15,84 @@
     <string name="understand">Mengerti</string>
     <string name="string_verified">Dokumen Telah Terverifikasi</string>
     <string name="string_desc_verified">Data yang telah anda berikan tersimpan\ndan terlindungi dengan aman di dalam\nsistem teraskill</string>
-    <string name="home">Home</string>
+    <string name="home">Beranda</string>
     <string name="skill">Keahlian</string>
     <string name="string_check_email">Silahkan cek email kamu</string>
     <string name="string_desc_check_email">Kami telah mengirimkan kode OTP\nke emailmu</string>
     <string name="done">Selesai</string>
     <string name="terms_condition_agreement"><![CDATA[Saya menyutujui syarat & ketentuan]]></string>
-    <string name="hello">Hallo,%1$s</string>
+    <string name="hello">Hallo, %1$s</string>
+    <string name="header_text_apply_mentor">Mohon dibaca Syarat dan Ketentuan\ngabung jadi mentor</string>
+    <string name="description_text_applu_mentor_letter">Isilah template Surat Pernyataan (download disini) lalu upload file tersebut dibawah ini</string>
+    <string name="description_text_apply_mentor_cv">Upload file sertifikat / portofolio keahlian dibawah ini</string>
+    <string name="choose_file">Pilih File</string>
+    <string name="join_mentor">Gabung jadi mentor</string>
+    <string name="settings">Pengaturan</string>
+    <string name="my_class">Kelasku</string>
+    <string name="edit_profil">Edit Profil</string>
+    <string name="save">Simpan</string>
+    <string name="new_class">Kelas Terbaru</string>
+    <string name="learning_type">Jenis Pembelajaran</string>
+    <string name="menu">Menu</string>
+    <string name="transaction_history">Riwayat Transaksi</string>
+    <string name="log_out">Log Out</string>
+    <string name="edit_profile_desc">Masukkan informasi dengan data\nyang valid</string>
+    <string name="no_file_choosen">No File Chosen</string>
+    <string name="tab_text_1">Progress Kelasmu</string>
+    <string name="tab_text_2">Kelas Saya</string>
+    <string name="tab_text_3">Portofolio</string>
+    <string name="desc_transaction_history">Cek histori transaksi anda</string>
+    <string name="progress_video">%1$s Materi</string>
+    <string name="verified">Terverifikasi</string>
+    <string name="verifying">Proses Verifikasi</string>
+    <string name="price_format">Rp %1$s</string>
+    <string name="total_modul">%1$s Kelas tertulis</string>
+    <string name="total_video">%1$s Materi Video</string>
+    <string name="next">Selanjutnya</string>
+    <string-array name="learning_path">
+        <item>UI/UX Design</item>
+        <item>Mobile Programming</item>
+        <item>Web Programming</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="format_otp_timer">(%02d:%02d)</string>
+    <string name="alert_account_verified">Akun telah terverifikasi</string>
+    <string name="alert_account_verified_message">Data yang telah anda berikan tersimpan\ndan terlindungi dengan aman di dalam\nsistem teraskill</string>
+    <string name="otp_wrong">Kode OTP yang anda masukan tidak sesuai</string>
+    <string name="search_bank">Cari Bank</string>
+    <string name="next_chapter"><![CDATA[Selesai & Lanjut]]></string>
+    <string name="dark_theme">DARK</string>
+    <string name="light_theme">LIGHT</string>
+    <string name="text_join_group">Bergabung dengan teman-teman dan mentor untuk berdiskusi bareng</string>
+    <string name="text_btn_joinGroup">Join Group Konsultasi</string>
+    <string name="text_profile_mentor">Profil Mentor</string>
+    <string name="text_about_class">Tentang Kelas</string>
+    <string name="text_spec_req_class">Spesifikasi Kebutuhan Kelas</string>
+    <string name="text_list_chapter">List Materi</string>
+    <string name="text_class_certificate">Sertifikat</string>
+    <string name="text_final_exam">Ujian Akhir Kelas</string>
+    <string name="tv_desc_checkoutClass">Belajar bersama kami menuju\nmasa depan yang lebih baik</string>
+    <string name="tv_checkout_kelas">Checkout Kelas</string>
+    <string name="tv_detail_buy">Detail Pembelian</string>
+    <string name="tv_name_user">Nama Pengguna</string>
+    <string name="tv_learning_path">Jenis Pembelajaran</string>
+    <string name="tv_class_name">Nama Kelas</string>
+    <string name="tv_payment_method">Metode Pembayaran</string>
+    <string name="tv_payment_detail">Detail Pembayaran</string>
+    <string name="tv_price">Total Harga</string>
+    <string name="et_refNumber">Masukkan nomor referensi transaksi anda</string>
+    <string name="tv_dialog_message_submission">Penugasan yang telah anda kirimkan akan dinilai oleh mentor untuk bisa mendapatkan sertifikat kelas</string>
+    <string name="tv_dialog_title_submission">Tunggu Penilaian Mentor</string>
+    <string name="tv_dialogTitle_exam">Hasil Kuis</string>
+    <string name="tv_dialogMessage_exam">Anda telah berhasil menjawab %1$s\ndari %2$s pertanyaan</string>
+    <string name="tv_header_forgotPassword">Lupa kata sandi?</string>
+    <string name="tv_desc_forgotPassword">Masukkan alamat email kamu\nuntuk pemulihan kata sandi</string>
+    <string name="btn_send">Kirim</string>
+    <string name="tv_reset">Kata sandi baru</string>
+    <string name="et_new_pass">Kata sandi baru</string>
+    <string name="et_pass_confirm">Konfirmasi sandi baru</string>
+    <string name="btn_save">Simpan</string>
+    <string name="btn_join_class">Gabung Kelas</string>
+    <string name="btn_back">Kembali ke Halaman Projek</string>
 </resources>
