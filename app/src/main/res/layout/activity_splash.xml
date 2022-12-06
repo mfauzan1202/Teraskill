@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/bgsp1" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_ilustration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

@@ -10,6 +10,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".application.Application"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +21,20 @@
         android:theme="@style/Theme.Teraskill"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.checkout_class.CheckoutClassActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.classroom.ClassLearningActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ui.main.settings.transaction_history.DetailTransactionActivity"
             android:exported="false" />
@@ -34,12 +49,6 @@
             android:exported="false" />
         <activity
             android:name=".ui.splash.onboarding.OnboardActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.classroom.ClassPreviewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.auth.ResetPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"

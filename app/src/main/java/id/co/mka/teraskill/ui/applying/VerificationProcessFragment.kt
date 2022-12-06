@@ -27,7 +27,7 @@ class VerificationProcessFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             btnUnderstand.setOnClickListener {
-                findNavController().navigate(VerificationProcessFragmentDirections.actionVerificationProcessFragmentToVerifiedFragment())
+                requireActivity().finish()
             }
         }
 

@@ -16,8 +16,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import id.co.mka.teraskill.*
+import id.co.mka.teraskill.R
+import id.co.mka.teraskill.data.dataclass.UserInfo
 import id.co.mka.teraskill.databinding.FragmentSignUpBinding
+import id.co.mka.teraskill.utils.*
+import java.io.File
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment() {
 
@@ -27,12 +31,13 @@ class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SignUpViewModel by viewModels()
+    private val viewModel: SignUpViewModel by viewModel()
+    private var imageFile: File? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,6 +49,8 @@ class SignUpFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
                 if (uri != null) {
                     filePath = uri
+                    imageFile = uriToFile(filePath, requireContext(), "image")
+                    imageFile = saveBitmapToFile(imageFile!!)
                     statusAddPhoto = true
                     Glide.with(this)
                         .load(uri)
@@ -53,58 +60,6 @@ class SignUpFragment : Fragment() {
             }
 
         binding.apply {
-            focusChange(tilName, etName)
-            focusChange(tilPhoneNumber, etPhoneNumber)
-            focusChange(tilEmail, etEmail)
-            focusChange(tilPassword, etPassword)
-            focusChange(tilVerifyPassword, etVerifyPassword)
-
-            btnSignup.setOnClickListener {
-                /** Checking error state status on all Edit text **/
-                if (
-                    isErrorOrEmpty(tilName, etName) ||
-                    isErrorOrEmpty(tilPhoneNumber, etPhoneNumber) ||
-                    isErrorOrEmpty(tilEmail, etEmail) ||
-                    isErrorOrEmpty(tilPassword, etPassword) ||
-                    isErrorOrEmpty(tilVerifyPassword, etVerifyPassword)
-                ) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Please fill the field with the right data",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    viewModel.signUpUser(
-                        UserInfo(
-                            etName.text.toString(),
-                            etPhoneNumber.text.toString(),
-                            etEmail.text.toString(),
-                            etPassword.text.toString(),
-                            etVerifyPassword.text.toString()
-                        )
-                    ).observe(viewLifecycleOwner) {
-                        if (it != null) {
-                            val dialogView = LayoutInflater.from(requireContext())
-                                .inflate(R.layout.dialog_register, null)
-                            val dialogBuilder = AlertDialog.Builder(requireContext())
-                                .setView(dialogView)
-                                .show()
-
-                            dialogView.findViewById<Button>(R.id.btn_done).setOnClickListener {
-                                dialogBuilder.dismiss()
-                                findNavController().popBackStack()
-                            }
-                        } else {
-                            Toast.makeText(
-                                requireContext(),
-                                "Sign Up Failed",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-            }
-
             fabAddPhoto.setOnClickListener {
                 if (statusAddPhoto) {
                     statusAddPhoto = false
@@ -114,6 +69,40 @@ class SignUpFragment : Fragment() {
                     getImage.launch("image/*")
                 }
             }
+
+            focusChange(tilName, etName)
+            focusChange(tilPhoneNumber, etPhoneNumber)
+            focusChange(tilEmail, etEmail)
+            focusChange(tilPassword, etPassword)
+            focusChange(tilVerifyPassword, etVerifyPassword)
+
+            ibBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            btnSignup.setOnClickListener {
+                /** Checking error state status on all Edit text **/
+                checkError(tilName, etName)
+                checkError(tilPhoneNumber, etPhoneNumber)
+                checkError(tilEmail, etEmail)
+                checkError(tilPassword, etPassword)
+                checkError(tilVerifyPassword, etVerifyPassword)
+
+
+                if (
+                    isErrorOrEmpty(tilName, etName) ||
+                    isErrorOrEmpty(tilPhoneNumber, etPhoneNumber) ||
+                    isErrorOrEmpty(tilEmail, etEmail) ||
+                    isErrorOrEmpty(tilPassword, etPassword) ||
+                    isErrorOrEmpty(tilVerifyPassword, etVerifyPassword)
+                ) {
+                    return@setOnClickListener
+                } else {
+                    showLoading(true, requireContext())
+                    uploadData()
+                }
+            }
+
         }
 
     }
@@ -124,42 +113,102 @@ class SignUpFragment : Fragment() {
     }
 
     private fun focusChange(textInputLayout: TextInputLayout, editText: TextInputEditText) {
+
         editText.setOnFocusChangeListener { _, hasFocus ->
-            binding.apply {
-                when {
-                    /** Remove error State when focused **/
-                    hasFocus -> removeError(textInputLayout, editText, requireContext())
-                    /** Checking empty state status on all Edit text **/
-                    editText.text.toString().isEmpty() -> setError(
-                        textInputLayout,
-                        editText,
-                        "Field cannot be empty",
-                        requireContext()
-                    )
-                    editText == etPassword && editText.text.toString().length < 8 -> setError(
-                        textInputLayout,
-                        editText,
-                        "Password must be at least 8 characters",
-                        requireContext()
-                    )
-                    editText == etVerifyPassword && editText.text.toString() != etPassword.text.toString() -> setError(
-                        textInputLayout,
-                        editText,
-                        "Password not match",
-                        requireContext()
-                    )
-                    editText == etEmail && !isEmailValid(editText.text.toString()) -> setError(
-                        textInputLayout,
-                        editText,
-                        "Please enter a valid email address",
-                        requireContext()
-                    )
-                    editText == etName && editText.text.toString().length < 3 -> setError(
-                        textInputLayout,
-                        editText,
-                        "Name must be more than 3 characters and must not contain any number or symbol",
-                        requireContext()
-                    )
+            if (hasFocus) {
+                if (textInputLayout.error != null) {
+                    editText.afterTextChanged {
+                        removeError(textInputLayout, editText, requireContext())
+                    }
+                } else {
+                    removeError(textInputLayout, editText, requireContext())
+                }
+            } else {
+                checkError(textInputLayout, editText)
+            }
+        }
+    }
+
+    private fun checkError(textInputLayout: TextInputLayout, editText: TextInputEditText) {
+        binding.apply {
+            when {
+                /** Checking empty state status on all Edit text **/
+                editText.text.toString().isEmpty() -> setError(
+                    textInputLayout,
+                    editText,
+                    "Kolom tidak boleh kosong",
+                    requireContext()
+                )
+                editText == etPassword && editText.text.toString().length < 8 -> setError(
+                    textInputLayout,
+                    editText,
+                    "Tolong masukkan password sedikitnya 8 karakter",
+                    requireContext()
+                )
+                editText == etVerifyPassword && editText.text.toString() != etPassword.text.toString() -> setError(
+                    textInputLayout,
+                    editText,
+                    "Password yang anda masukkan tidak sama",
+                    requireContext()
+                )
+                editText == etEmail && !isEmailValid(editText.text.toString()) -> setError(
+                    textInputLayout,
+                    editText,
+                    "Tolong masukkan alamat email yang benar",
+                    requireContext()
+                )
+                editText == etName && editText.text.toString().length < 3 -> setError(
+                    textInputLayout,
+                    editText,
+                    "Tolong masukkan nama sedikitnya 3 karakter, dan nama tidak boleh mengandung angka/simbol",
+                    requireContext()
+                )
+            }
+        }
+    }
+
+    private fun uploadData() {
+        binding.apply {
+            viewModel.signUpUser(
+                UserInfo(
+                    etName.text.toString(),
+                    etPhoneNumber.text.toString(),
+                    etEmail.text.toString(),
+                    etPassword.text.toString(),
+                    etVerifyPassword.text.toString()
+                ),
+                imageFile
+            ).observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Success -> {
+                        val dialogView = LayoutInflater.from(requireContext())
+                            .inflate(R.layout.dialog_register, null)
+                        val dialogBuilder = AlertDialog.Builder(requireContext())
+                            .setView(dialogView)
+                            .show()
+
+                        showLoading(false, requireContext())
+
+                        dialogView.findViewById<Button>(R.id.btn_done).setOnClickListener {
+                            dialogBuilder.dismiss()
+                            findNavController().navigate(
+                                SignUpFragmentDirections.actionSignUpFragmentToVerificationOTPFragment(
+                                    etEmail.text.toString()
+                                )
+                            )
+                        }
+                    }
+                    is Resource.Error -> {
+                        showLoading(false, requireContext())
+                        Toast.makeText(
+                            requireContext(),
+                            "Daftar gagal, silahkan coba lagi",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                    is Resource.Loading -> {
+                        showLoading(true, requireContext())
+                    }
                 }
             }
         }

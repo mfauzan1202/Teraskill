@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_class_learning"
+    app:startDestination="@id/classPreviewFragment">
+
+    <fragment
+        android:id="@+id/classPreviewFragment"
+        android:name="id.co.mka.teraskill.ui.classroom.class_preview.ClassPreviewFragment"
+        android:label="fragment_class_preview"
+        tools:layout="@layout/fragment_class_preview" >
+        <action
+            android:id="@+id/action_classPreviewFragment_to_classTheoryFragment"
+            app:destination="@id/classTheoryFragment" />
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_classPreviewFragment_to_classExamFragment"
+            app:destination="@id/classExamFragment" />
+        <action
+            android:id="@+id/action_classPreviewFragment_to_classProjectFragment"
+            app:destination="@id/classProjectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/classTheoryFragment"
+        android:name="id.co.mka.teraskill.ui.classroom.class_theory.ClassTheoryFragment"
+        android:label="fragment_class_theory"
+        tools:layout="@layout/fragment_class_theory" >
+        <argument
+            android:name="uuidModule"
+            app:argType="string" />
+        <argument
+            android:name="uuidClass"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/classSubmissionFragment"
+        android:name="id.co.mka.teraskill.ui.classroom.class_project.ClassSubmissionFragment"
+        android:label="fragment_class_submission"
+        tools:layout="@layout/fragment_class_submission" >
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_classSubmissionFragment_to_classPreviewFragment"
+            app:destination="@id/classPreviewFragment" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/classExamFragment"
+        android:name="id.co.mka.teraskill.ui.classroom.class_exam.ClassExamFragment"
+        android:label="fragment_class_exam"
+        tools:layout="@layout/fragment_class_exam" >
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/classProjectFragment"
+        android:name="id.co.mka.teraskill.ui.classroom.class_project.ClassProjectFragment"
+        android:label="fragment_class_project"
+        tools:layout="@layout/fragment_class_project" >
+        <action
+            android:id="@+id/action_classProjectFragment_to_classSubmissionFragment"
+            app:destination="@id/classSubmissionFragment" />
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+    </fragment>
+</navigation>

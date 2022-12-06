@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_checkout"
+    app:startDestination="@id/detailPaymentFragment">
+
+    <fragment
+        android:id="@+id/detailPaymentFragment"
+        android:name="id.co.mka.teraskill.ui.checkout_class.DetailPaymentFragment"
+        android:label="fragment_detail_payment"
+        tools:layout="@layout/fragment_detail_payment" >
+        <action
+            android:id="@+id/action_detailPaymentFragment_to_uploadReceiptFragment"
+            app:destination="@id/uploadReceiptFragment" />
+        <argument
+            android:name="classID"
+            app:argType="string" />
+        <argument android:name="className"
+            app:argType="string" />
+        <argument
+            android:name="pathName"
+            app:argType="string" />
+        <argument android:name="price"
+            app:argType="string" />
+        <argument
+            android:name="url_image"
+            app:argType="string" />
+        <argument
+            android:name="class_uuid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadReceiptFragment"
+        android:name="id.co.mka.teraskill.ui.checkout_class.UploadReceiptFragment"
+        android:label="fragment_upload_receipt"
+        tools:layout="@layout/fragment_upload_receipt" >
+        <argument
+            android:name="url_image"
+            app:argType="string" />
+        <argument
+            android:name="className"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="string" />
+        <argument
+            android:name="classID"
+            app:argType="string" />
+        <argument android:name="class_uuid" />
+    </fragment>
+</navigation>

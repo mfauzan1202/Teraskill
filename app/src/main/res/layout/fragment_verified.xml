@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/textView"
-        style="@style/tittle_text"
+        style="@style/title_text"
         android:layout_marginTop="28dp"
         android:text="@string/string_verified"
         app:layout_constraintEnd_toEndOf="parent"

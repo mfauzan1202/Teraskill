@@ -26,7 +26,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        style="@style/tittle_text" />
+        style="@style/title_text" />
 
     <TextView
         android:id="@+id/textView2"

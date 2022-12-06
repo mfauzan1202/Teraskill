@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_portfolio"
+    app:startDestination="@id/listPortfolioFragment">
+    <fragment
+        android:id="@+id/addPortfolioFirstFragment"
+        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.AddPortfolioFirstFragment"
+        android:label="fragment_add_portfolio_first"
+        tools:layout="@layout/fragment_add_portfolio_first" >
+        <action
+            android:id="@+id/action_addPortfolioFirstFragment_to_addPortfolioSecondFragment"
+            app:destination="@id/addPortfolioSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPortfolioSecondFragment"
+        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.AddPortfolioSecondFragment"
+        android:label="fragment_add_portfolio_second"
+        tools:layout="@layout/fragment_add_portfolio_second" />
+    <fragment
+        android:id="@+id/listPortfolioFragment"
+        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.ListPortfolioFragment"
+        android:label="fragment_list_portfolio"
+        tools:layout="@layout/fragment_list_portfolio" >
+        <action
+            android:id="@+id/action_listPortfolioFragment_to_addPortfolioFirstFragment"
+            app:destination="@id/addPortfolioFirstFragment" />
+    </fragment>
+</navigation>

@@ -9,32 +9,42 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/ib_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_back_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_editProfile"
+            android:id="@+id/tv_transactionHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="27dp"
-            android:layout_marginTop="66dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/inter"
             android:text="@string/edit_profil"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/ib_Back" />
 
         <TextView
-            android:id="@+id/tv_desc_editProfile"
+            android:id="@+id/tv_desc_transactionHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/inter"
             android:text="@string/edit_profile_desc"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/tv_editProfile"
-            app:layout_constraintTop_toBottomOf="@+id/tv_editProfile" />
+            app:layout_constraintStart_toStartOf="@id/tv_transactionHistory"
+            app:layout_constraintTop_toBottomOf="@id/tv_transactionHistory" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -42,12 +52,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             app:cardCornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_desc_editProfile"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="10dp">
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_transactionHistory">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -59,9 +69,9 @@
                     android:layout_height="100dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
+                    android:src="@drawable/dummyprofilpic"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/avatars" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_editPhoto"
@@ -71,8 +81,8 @@
                     android:fontFamily="@font/inter"
                     android:text="@string/choose_file"
                     android:textAllCaps="false"
-                    app:layout_constraintStart_toStartOf="@+id/iv_profilePicture"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_profilePicture" />
+                    app:layout_constraintStart_toStartOf="@id/iv_profilePicture"
+                    app:layout_constraintTop_toBottomOf="@id/iv_profilePicture" />
 
                 <TextView
                     android:id="@+id/tv_editPhoto"
@@ -83,9 +93,9 @@
                     android:text="@string/no_file_choosen"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/btn_editPhoto"
-                    app:layout_constraintStart_toEndOf="@+id/btn_editPhoto"
-                    app:layout_constraintTop_toTopOf="@+id/btn_editPhoto" />
+                    app:layout_constraintBottom_toBottomOf="@id/btn_editPhoto"
+                    app:layout_constraintStart_toEndOf="@id/btn_editPhoto"
+                    app:layout_constraintTop_toTopOf="@id/btn_editPhoto" />
 
                 <TextView
                     android:id="@+id/tv_fullName"
@@ -96,19 +106,31 @@
                     android:text="@string/fullname"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_editPhoto" />
+                    app:layout_constraintStart_toStartOf="@id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@id/btn_editPhoto" />
 
-                <EditText
-                    android:id="@+id/et_fullName"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_fullName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@color/soft_color_3"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    app:hintEnabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_fullName" />
+                    app:layout_constraintStart_toStartOf="@id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@id/tv_fullName">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_fullName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_textinput_gray"
+                        android:hint="@string/fullname"
+                        android:paddingVertical="14dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_phoneNumber"
@@ -119,19 +141,33 @@
                     android:text="@string/number_phone"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/et_fullName" />
+                    app:layout_constraintStart_toStartOf="@id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@id/til_fullName" />
 
-                <EditText
-                    android:id="@+id/et_phoneNumber"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_phoneNumber"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@color/soft_color_3"
+                    android:background="@drawable/bg_textinput_gray"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    app:hintEnabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_phoneNumber" />
+                    app:layout_constraintStart_toStartOf="@id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@id/tv_phoneNumber">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_phoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_textinput_gray"
+                        android:hint="@string/number_phone"
+                        android:inputType="number"
+                        android:paddingVertical="14dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_password"
@@ -142,19 +178,33 @@
                     android:text="@string/password"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/et_phoneNumber" />
+                    app:layout_constraintStart_toStartOf="@id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@id/til_phoneNumber" />
 
-                <EditText
-                    android:id="@+id/et_password"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_password"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@color/soft_color_3"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    app:hintEnabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+                    app:layout_constraintStart_toStartOf="@id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@id/tv_password"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_textinput_gray"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:paddingVertical="14dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_verifyPassword"
@@ -165,21 +215,36 @@
                     android:text="@string/verify_password"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="@+id/btn_editPhoto"
-                    app:layout_constraintTop_toBottomOf="@+id/et_password" />
+                    app:layout_constraintStart_toStartOf="@id/btn_editPhoto"
+                    app:layout_constraintTop_toBottomOf="@id/til_password" />
 
-                <EditText
-                    android:id="@+id/et_verifyPassword"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_verifyPassword"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@color/soft_color_3"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
+                    app:errorIconDrawable="@drawable/ic_error"
+                    app:hintEnabled="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_verifyPassword" />
+                    app:layout_constraintStart_toStartOf="@id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@id/tv_verifyPassword"
+                    app:passwordToggleEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_verifyPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_textinput_gray"
+                        android:hint="@string/verify_password"
+                        android:inputType="textPassword"
+                        android:paddingVertical="14dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_save"
                     style="@style/style_buttonPrimary"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="20dp"
@@ -188,12 +253,21 @@
                     android:text="@string/save"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/tv_fullName"
-                    app:layout_constraintTop_toBottomOf="@+id/et_verifyPassword" />
-
+                    app:layout_constraintStart_toStartOf="@id/tv_fullName"
+                    app:layout_constraintTop_toBottomOf="@id/til_verifyPassword" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
