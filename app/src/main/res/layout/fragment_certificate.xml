@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CertificateActivity"
+    tools:context=".ui.classroom.class_certificate.CertificateFragment"
     android:background="@color/background_color">
 
     <LinearLayout
@@ -68,5 +68,6 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/imageView5"
         tools:layout_editor_absoluteX="30dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
