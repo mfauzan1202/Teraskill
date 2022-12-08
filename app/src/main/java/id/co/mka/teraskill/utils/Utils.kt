@@ -16,6 +16,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -155,10 +156,10 @@ fun createCustomTempFileImage(context: Context): File {
 
 fun showLoading(isLoading: Boolean, context: Context) {
     if (isLoading) {
-        val loading = (context as Activity).findViewById<ProgressBar>(R.id.progressBar)
+        val loading = (context as Activity).findViewById<ConstraintLayout>(R.id.dialog_loading)
         loading.visibility = View.VISIBLE
     } else {
-        val loading = (context as Activity).findViewById<ProgressBar>(R.id.progressBar)
+        val loading = (context as Activity).findViewById<ConstraintLayout>(R.id.dialog_loading)
         loading.visibility = View.GONE
     }
 }

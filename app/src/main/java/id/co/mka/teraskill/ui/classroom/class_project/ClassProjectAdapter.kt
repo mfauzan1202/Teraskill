@@ -24,11 +24,12 @@ class ClassProjectAdapter(val onClickListener: (String, String) -> Unit) :
             binding.apply {
                 tvListSubmission.text = "Submission ${position + 1}"
                 ivStatus.setImageResource(
-                    if (data.userAswerProjek != null) {
-                        R.drawable.ic_rb_submission
-                    } else {
-                        R.drawable.ic_rb_submission_done
-                    }
+//                    when(data.userAnswer) {
+//                        is UserAnswer.DataValue -> R.drawable.ic_rb_submission
+//                        is UserAnswer.StringValue -> R.drawable.ic_rb_submission_done
+//                    }
+                    if (data.userAnswer != null) R.drawable.ic_rb_submission_done
+                    else R.drawable.ic_rb_submission
                 )
             }
             itemView.setOnClickListener { onClickListener(data.uuid, data.soal) }

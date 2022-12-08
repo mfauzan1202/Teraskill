@@ -62,9 +62,11 @@ data class SingleClassResponse(
 
     data class Status (
         val pembelian: String,
+        val status_beli: String,
         val materi: String,
         val exam: String,
-        val exam_lulus: String
+        val exam_lulus: String,
+        val review: String
     )
 }
 

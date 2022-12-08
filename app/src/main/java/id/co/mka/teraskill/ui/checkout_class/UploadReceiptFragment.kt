@@ -15,13 +15,14 @@ import com.bumptech.glide.Glide
 import id.co.mka.teraskill.databinding.FragmentUploadReceiptBinding
 import id.co.mka.teraskill.utils.Preferences
 import id.co.mka.teraskill.utils.Resource
+import id.co.mka.teraskill.utils.showLoading
 import id.co.mka.teraskill.utils.uriToFile
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 
 class UploadReceiptFragment : Fragment() {
 
-    private var _binding : FragmentUploadReceiptBinding? = null
+    private var _binding: FragmentUploadReceiptBinding? = null
     private val binding get() = _binding!!
     private val args: UploadReceiptFragmentArgs by navArgs()
     private val viewModel: UploadReceiptViewModel by viewModel()
@@ -45,7 +46,8 @@ class UploadReceiptFragment : Fragment() {
                 if (uri != null) {
                     filePath = uri
                     imageFile = uriToFile(filePath, requireContext(), "image")
-                    binding.tvChooseFile.text = DocumentFile.fromSingleUri(requireContext(), filePath)!!.name
+                    binding.tvChooseFile.text =
+                        DocumentFile.fromSingleUri(requireContext(), filePath)!!.name
                 }
             }
 
@@ -63,8 +65,13 @@ class UploadReceiptFragment : Fragment() {
 
             btnConfirmation.setOnClickListener {
                 if (imageFile == null || binding.etRefNumber.text.toString().isEmpty()) {
-                    Toast.makeText(requireContext(), "Pilih bukti pembayaran terlebih dahulu", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Pilih bukti pembayaran terlebih dahulu",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
+                    showLoading(true, requireContext())
                     joinClass()
                 }
             }
@@ -76,21 +83,31 @@ class UploadReceiptFragment : Fragment() {
         _binding = null
     }
 
-    private fun joinClass(){
+    private fun joinClass() {
         viewModel.joinClass(args.classID.toInt()).observe(viewLifecycleOwner) {
             if (it != null) {
-                when(it){
+                when (it) {
                     is Resource.Success -> uploadReceipt()
                     else -> uploadReceipt()
                 }
             }
         }
     }
+
     private fun uploadReceipt() {
         val token = Preferences(requireContext()).getValues("token")
-        viewModel.uploadReceipt(token!!, imageFile!!, binding.etRefNumber.text.toString(), args.classUuid   ).observe(viewLifecycleOwner) {
-            if (it != null) {
-                Log.d("TAG", "uploadReceipt: $it")
+        viewModel.uploadReceipt(
+            token!!,
+            imageFile!!,
+            binding.etRefNumber.text.toString(),
+            args.classUuid
+        ).observe(viewLifecycleOwner) {
+            if (it == "Berhasil mengirim bukti pembayaran") {
+                showLoading(false, requireContext())
+                requireActivity().finish()
+            }else{
+                showLoading(false, requireContext())
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
     }

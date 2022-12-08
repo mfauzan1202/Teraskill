@@ -353,7 +353,6 @@
                         android:layout_height="match_parent"
                         android:background="@color/soft_color_3_transparent"
                         android:clickable="true"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -364,7 +363,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_lock"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -452,7 +450,6 @@
                         android:background="@color/soft_color_3_transparent"
                         android:clickable="true"
                         android:elevation="2dp"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -464,7 +461,6 @@
                         android:layout_height="wrap_content"
                         android:elevation="2dp"
                         android:src="@drawable/ic_lock"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -472,19 +468,32 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_class_review"
+                style="@style/style_buttonSecondary"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="30dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="8dp"
+                android:visibility="gone"
+                android:text="@string/btn_class_review"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/border_final_exam"/>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/border_certificate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="20dp"
+                android:layout_marginVertical="30dp"
                 android:background="@drawable/editrounded"
                 android:backgroundTint="@color/background_color"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/border_final_exam">
+                app:layout_constraintTop_toBottomOf="@id/btn_class_review">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -532,7 +541,6 @@
                         android:background="@color/soft_color_3_transparent"
                         android:clickable="true"
                         android:elevation="2dp"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -544,7 +552,6 @@
                         android:layout_height="wrap_content"
                         android:elevation="2dp"
                         android:src="@drawable/ic_lock"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

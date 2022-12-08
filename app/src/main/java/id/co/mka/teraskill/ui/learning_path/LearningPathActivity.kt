@@ -1,7 +1,6 @@
 package id.co.mka.teraskill.ui.learning_path
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -21,7 +20,7 @@ class LearningPathActivity : AppCompatActivity() {
     private val viewModel: LearningPathViewModel by viewModel()
 
     var listLearningPath = HashMap<String, String>()
-    var listNameLearningPath = arrayListOf<String>()
+    private var listNameLearningPath = arrayListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,13 +45,6 @@ class LearningPathActivity : AppCompatActivity() {
                         getData("0")
                     } else {
                         val idLearningPath = listLearningPath.filterValues { it == selected }.keys
-                        Log.d("TESSS", listLearningPath.toString())
-                        Log.d("SSSET", idLearningPath.first())
-                        Toast.makeText(
-                            this@LearningPathActivity,
-                            idLearningPath.first().toString(),
-                            Toast.LENGTH_SHORT
-                        ).show()
                         getData(idLearningPath.first())
                     }
                 }
@@ -124,9 +116,5 @@ class LearningPathActivity : AppCompatActivity() {
                     else -> {}
                 }
             }
-    }
-
-    companion object {
-        const val EXTRA_ID = 0
     }
 }
