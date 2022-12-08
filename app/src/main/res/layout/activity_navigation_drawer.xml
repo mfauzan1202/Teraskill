@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.classroom.NavigationDrawerActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            android:src="@drawable/ic_menu_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="DARK"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/switch1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMenu" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:thumb="@drawable/ic_ellipse_395"
+            app:track="@drawable/track_switch"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDark"
+            app:layout_constraintEnd_toStartOf="@+id/tvLight"
+            app:layout_constraintStart_toEndOf="@id/tvDark"
+            app:layout_constraintTop_toTopOf="@+id/tvDark" />
+
+        <TextView
+            android:id="@+id/tvLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="LIGHT"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/switch1"
+            app:layout_constraintStart_toEndOf="@+id/switch1"
+            app:layout_constraintTop_toTopOf="@+id/switch1" />
+
+
+        <TextView
+            android:id="@+id/tvTitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Pengenalan Kelas"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_intro_item1"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_gray"
+            android:drawableEnd="@drawable/ic_group_1869"
+            android:fontFamily="@font/inter"
+            android:paddingHorizontal="20dp"
+            android:text="Intro Kelas"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColorHint="@color/gray_text"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitle1"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle1"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_intro_item2"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/button_blue"
+            android:drawableEnd="@drawable/ic_group_1870"
+            android:fontFamily="@font/inter"
+            android:paddingHorizontal="20dp"
+            android:text="Kenapa Figma"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColorHint="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/btn_intro_item1"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="@+id/btn_intro_item1"
+            app:layout_constraintTop_toBottomOf="@+id/btn_intro_item1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_class_introduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_intro_item2"
+            tools:listitem="@layout/fragment_item_nav_draw" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
