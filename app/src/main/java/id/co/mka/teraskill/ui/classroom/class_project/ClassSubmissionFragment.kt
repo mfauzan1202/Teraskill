@@ -49,7 +49,19 @@ class ClassSubmissionFragment : Fragment() {
         viewModel.uploadProjectLink(args.uuid, binding.etLinkSubmission.text.toString())
             .observe(viewLifecycleOwner) {
                 when (it) {
-                    is Resource.Error -> TODO()
+                    is Resource.Error -> {
+                        binding.apply {
+                            btnSend.isEnabled = true
+                            btnSend.text = "Kirim"
+                        }
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Gagal")
+                            .setMessage(it.message)
+                            .setPositiveButton("OK") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
                         val dialogView = LayoutInflater.from(requireContext())

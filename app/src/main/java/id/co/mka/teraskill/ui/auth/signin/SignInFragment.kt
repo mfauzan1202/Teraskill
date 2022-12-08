@@ -39,7 +39,7 @@ class SignInFragment : Fragment() {
         binding.apply {
             focusChange(tilEmail, etEmail)
             focusChange(tilPassword, etPassword)
-
+            
             btnLogin.setOnClickListener {
                 checkError(tilEmail, etEmail)
                 checkError(tilPassword, etPassword)
@@ -102,7 +102,7 @@ class SignInFragment : Fragment() {
                 editText == etEmail && !isEmailValid(editText.text.toString()) -> setError(
                     textInputLayout,
                     editText,
-                    "Tolong masukkan email yang valid",
+                    "Tolong masukkan Email yang valid",
                     requireContext()
                 )
             }
@@ -152,5 +152,4 @@ class SignInFragment : Fragment() {
             }
         }
     }
-
 }

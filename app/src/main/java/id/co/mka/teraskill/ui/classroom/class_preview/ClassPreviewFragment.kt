@@ -2,7 +2,6 @@ package id.co.mka.teraskill.ui.classroom.class_preview
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import id.co.mka.teraskill.R
+import id.co.mka.teraskill.data.responses.SingleClassResponse
 import id.co.mka.teraskill.databinding.FragmentClassPreviewBinding
 import id.co.mka.teraskill.ui.checkout_class.CheckoutClassActivity
 import id.co.mka.teraskill.ui.checkout_class.CheckoutClassActivity.Companion.CLASS_ID
@@ -60,45 +60,9 @@ class ClassPreviewFragment : Fragment() {
 
             viewModel.getDetailClass(args.uuid).observe(viewLifecycleOwner) { data ->
                 if (data != null) {
-
-                    if (data.status.pembelian == "belum dibeli") {
-                        lock()
-                    }
-                    if (data.status.exam_lulus == "lulus") {
-                        btnQuiz.backgroundTintList =
-                            AppCompatResources.getColorStateList(
-                                requireContext(),
-                                R.color.primary_color
-                            )
-                        btnQuiz.isEnabled = false
-                        btnQuiz.setTextColor(
-                            AppCompatResources.getColorStateList(
-                                requireContext(),
-                                R.color.white
-                            )
-                        )
-                    }
+                    checkStatus(data.status)
                     val response = data.response
-                    Log.d("TESS", response.name)
-                    Glide.with(requireContext())
-                        .load(response.image)
-                        .into(ivClassPreview)
-                    tvClassTitle.text = response.name
-                    tvTotalModule.text =
-                        getString(R.string.total_modul, response.jmlMateriText.toString())
-                    tvTotalVideo.text =
-                        getString(R.string.total_video, response.jmlMateriVideo.toString())
-                    tvSpecification.text = response.tools
-                    response.mentorInfo.let { user ->
-                        tvUser.text = user.name
-                        user.mentorJob.let { mentor ->
-                            tvJobDivision.text = mentor.job
-                        }
-                    }
-                    tvClassDesc.text = response.about
-
-                    adapter.setData(response.moduls)
-                    setAdapter()
+                    setDetailClass(response)
 
                     btnJoinClass.setOnClickListener {
                         if (response.type == "Gratis") {
@@ -140,6 +104,30 @@ class ClassPreviewFragment : Fragment() {
         _binding = null
     }
 
+    private fun setDetailClass(response: SingleClassResponse.Response) {
+        binding.apply {
+            Glide.with(requireContext())
+                .load(response.image)
+                .into(ivClassPreview)
+            tvClassTitle.text = response.name
+            tvTotalModule.text =
+                getString(R.string.total_modul, response.jmlMateriText.toString())
+            tvTotalVideo.text =
+                getString(R.string.total_video, response.jmlMateriVideo.toString())
+            tvSpecification.text = response.tools
+            response.mentorInfo.let { user ->
+                tvUser.text = user.name
+                user.mentorJob.let { mentor ->
+                    tvJobDivision.text = mentor.job
+                }
+            }
+            tvClassDesc.text = response.about
+
+            adapter.setData(response.moduls)
+            setAdapter()
+        }
+    }
+
     private fun setAdapter() {
         binding.apply {
             rvListChapter.adapter = adapter
@@ -155,7 +143,7 @@ class ClassPreviewFragment : Fragment() {
                         Toast.makeText(requireContext(), "Berhasil bergabung", Toast.LENGTH_SHORT)
                             .show()
                         binding.btnJoinClass.visibility = View.GONE
-                        unlock()
+                        unlock(1)
                     }
                     else -> {
                         Toast.makeText(requireContext(), "Gagal bergabung", Toast.LENGTH_SHORT)
@@ -166,27 +154,57 @@ class ClassPreviewFragment : Fragment() {
         }
     }
 
-    private fun lock() {
+    private fun unlock(unlockCode: Int) {
         binding.apply {
-            viewLockListMateri.visibility = View.VISIBLE
-            viewLockFinalExam.visibility = View.VISIBLE
-            viewLockCertificate.visibility = View.VISIBLE
-            icLockListMateri.visibility = View.VISIBLE
-            icLockFinalExam.visibility = View.VISIBLE
-            icLockCertificate.visibility = View.VISIBLE
-            btnJoinClass.visibility = View.VISIBLE
+            btnJoinClass.visibility = View.GONE
+            when (unlockCode) {
+                1 -> {
+                    viewLockListMateri.visibility = View.GONE
+                    icLockListMateri.visibility = View.GONE
+                }
+                2 -> {
+                    viewLockFinalExam.visibility = View.GONE
+                    icLockFinalExam.visibility = View.GONE
+                }
+                3 -> {
+                    btnClassReview.visibility = View.VISIBLE
+                }
+                4 -> {
+                    viewLockCertificate.visibility = View.GONE
+                    icLockCertificate.visibility = View.GONE
+                }
+            }
         }
     }
 
-    private fun unlock() {
+    private fun checkStatus(status: SingleClassResponse.Status) {
         binding.apply {
-            viewLockListMateri.visibility = View.GONE
-            viewLockFinalExam.visibility = View.GONE
-            viewLockCertificate.visibility = View.GONE
-            icLockListMateri.visibility = View.GONE
-            icLockFinalExam.visibility = View.GONE
-            icLockCertificate.visibility = View.GONE
-            btnJoinClass.visibility = View.GONE
+            if (status.pembelian == "sudah dibeli" || status.status_beli == "Lunas") {
+                unlock(1)
+                if (status.materi == "materi sudah selesai") {
+                    unlock(2)
+                    if (status.exam_lulus == "lulus") {
+                        unlock(3)
+                        btnQuiz.backgroundTintList =
+                            AppCompatResources.getColorStateList(
+                                requireContext(),
+                                R.color.primary_color
+                            )
+                        btnQuiz.isEnabled = false
+                        btnQuiz.setTextColor(
+                            AppCompatResources.getColorStateList(
+                                requireContext(),
+                                R.color.white
+                            )
+                        )
+                        if (status.review == "sudah review") {
+                            unlock(4)
+                        }
+                    }
+                }
+            } else {
+                btnJoinClass.visibility = View.VISIBLE
+            }
         }
     }
 }

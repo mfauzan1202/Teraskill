@@ -44,6 +44,9 @@ class TransactionHistoryActivity : AppCompatActivity() {
 
                     }
                     is Resource.Success -> {
+                        rvTransactionHistory.visibility = View.VISIBLE
+                        tvEmpty.visibility = View.GONE
+                        ivEmpty.visibility = View.GONE
                         if (it.data!!.kelasUser.isNotEmpty()) {
                             transactionHistoryAdapter =
                                 TransactionHistoryAdapter(it.data.kelasUser) {
@@ -80,6 +83,9 @@ class TransactionHistoryActivity : AppCompatActivity() {
 
                         }
                         is Resource.Success -> {
+                            rvTransactionHistory.visibility = View.VISIBLE
+                            tvEmpty.visibility = View.GONE
+                            ivEmpty.visibility = View.GONE
                             if (it.data!!.kelasUser.isNotEmpty()) {
                                 transactionHistoryAdapter =
                                     TransactionHistoryAdapter(it.data.kelasUser) {
