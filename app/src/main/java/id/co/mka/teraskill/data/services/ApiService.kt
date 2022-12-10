@@ -4,6 +4,7 @@ import id.co.mka.teraskill.data.dataclass.UserInfo
 import id.co.mka.teraskill.data.responses.*
 import id.co.mka.teraskill.data.responses.SingleClassResponse
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -141,9 +142,19 @@ interface ApiService {
         @Path("uuid") uuid: String
     ): Call<List<ProjectResponse>>
 
-    @POST("/projek/answer/{uuid}")
+    @POST("projek/answer/{uuid}")
     fun submitProject(
         @Path("uuid") uuid: String,
         @Body response: HashMap<String, String>
     ): Call<AuthResponse>
+
+    @PATCH("/kelas/review/{uuid}")
+    fun submitReview(
+        @Path("uuid") uuid: String,
+        @Body response: HashMap<String, String>
+    ): Call<AuthResponse>
+
+    //TODO: Jangan lupa dihapus
+    @GET
+    fun downloadPdfFile(@Url pdfUrl: String): Call<ResponseBody>
 }

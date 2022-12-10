@@ -39,8 +39,8 @@ data class ModulResponse(
     @field:SerializedName("modul")
     val modul: ModuleInfoItem,
 
-    @field:SerializedName("kelas_user_materis")
-    val statusProgress: StatusProgressUser
+    @field:SerializedName("is_readed")
+    val statusProgress: String
 ) {
     data class ModuleInfoItem(
         @field:SerializedName("uuid")
@@ -48,15 +48,6 @@ data class ModulResponse(
 
         @field:SerializedName("name")
         val name: String,
-
-        @field:SerializedName("kelas_teraskill")
-        val moduleInfo: SingleClassResponse.Response.ModulsItem? = null
-    )
-
-    data class StatusProgressUser(
-
-        @field:SerializedName("status")
-        val status: String
     )
 }
 

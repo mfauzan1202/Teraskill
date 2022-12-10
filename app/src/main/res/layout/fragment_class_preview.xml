@@ -135,7 +135,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_batal"
+                android:id="@+id/btn_cancel"
                 android:layout_width="178dp"
                 android:layout_height="41dp"
                 android:background="@drawable/button_outlined_blue"
@@ -558,6 +558,17 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
+            <include
+                android:id="@+id/dialog_loading"
+                layout="@layout/dialog_loading"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

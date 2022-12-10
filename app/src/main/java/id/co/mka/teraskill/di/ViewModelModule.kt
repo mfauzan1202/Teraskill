@@ -7,6 +7,7 @@ import id.co.mka.teraskill.ui.auth.otp.VerificationOTPViewModel
 import id.co.mka.teraskill.ui.auth.signin.SignInViewModel
 import id.co.mka.teraskill.ui.auth.signup.SignUpViewModel
 import id.co.mka.teraskill.ui.checkout_class.UploadReceiptViewModel
+import id.co.mka.teraskill.ui.classroom.class_certificate.CertificateViewModel
 import id.co.mka.teraskill.ui.classroom.class_exam.ClassExamViewModel
 import id.co.mka.teraskill.ui.classroom.class_preview.ClassPreviewViewModel
 import id.co.mka.teraskill.ui.classroom.class_project.ClassProjectViewModel
@@ -42,6 +43,7 @@ val viewModelModule = module {
     viewModel { ClassProjectViewModel(get()) }
     /** Classroom/class_theory ViewModel */
     viewModel { ClassSubChapterViewModel(get()) }
+//    viewModel { CertificateViewModel(get(), get()) }
 
     /** learning_path ViewModel */
     viewModel { LearningPathViewModel(get(), get()) }

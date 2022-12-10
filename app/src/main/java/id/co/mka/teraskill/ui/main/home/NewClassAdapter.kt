@@ -1,7 +1,6 @@
 package id.co.mka.teraskill.ui.main.home
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
