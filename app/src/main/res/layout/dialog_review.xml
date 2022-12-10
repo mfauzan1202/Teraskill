@@ -8,15 +8,17 @@
 
     <TextView
         android:id="@+id/tv_review"
-        style="@style/tittle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="26dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/inter_semibold"
-        android:text="Hasil Kuis"
+        android:text="Berikan Reviewmu Untuk Kelas Ini"
+        android:textColor="@color/black"
         android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"  />
 
     <ImageView
         android:id="@+id/iv_line"

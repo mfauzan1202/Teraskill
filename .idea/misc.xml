@@ -20,8 +20,9 @@
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_certificate.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_class_final_exam.xml" value="0.2" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_class_preview.xml" value="0.25" />
-        <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_detail_portfolio.xml" value="0.264" />
+        <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_detail_portfolio.xml" value="0.29684601113172543" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_detail_profile.xml" value="0.25" />
+        <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_detail_webinars.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_first_splash.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_learning_path.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -56,8 +57,10 @@
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/fragment_sign_in.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/item_class.xml" value="0.25" />
+        <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/item_class_learningpath.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/item_class_progress.xml" value="0.25" />
         <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/item_list_materi.xml" value="0.25" />
+        <entry key="..\:/AMIKOM/MSIB Batch3 - MKA/AA PROJECT TERASKILL/Teraskill/Teraskill/app/src/main/res/layout/item_webinars.xml" value="0.4" />
       </map>
     </option>
   </component>
