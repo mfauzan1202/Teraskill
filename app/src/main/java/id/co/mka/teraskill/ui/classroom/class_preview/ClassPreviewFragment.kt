@@ -1,10 +1,13 @@
 package id.co.mka.teraskill.ui.classroom.class_preview
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
@@ -12,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.textfield.TextInputEditText
 import id.co.mka.teraskill.R
 import id.co.mka.teraskill.data.responses.SingleClassResponse
 import id.co.mka.teraskill.databinding.FragmentClassPreviewBinding
@@ -79,7 +83,55 @@ class ClassPreviewFragment : Fragment() {
                             startActivity(intent)
                         }
                     }
+                    btnClassReview.setOnClickListener {
+                        val dialogView = LayoutInflater.from(requireContext())
+                            .inflate(R.layout.dialog_review, null)
+                        val dialogBuilder = AlertDialog.Builder(requireContext())
+                            .setView(dialogView)
+                            .show()
 
+                        val icStar1 = dialogView.findViewById<ImageView>(R.id.ic_star_1)
+                        val icStar2 = dialogView.findViewById<ImageView>(R.id.ic_star_2)
+                        val icStar3 = dialogView.findViewById<ImageView>(R.id.ic_star_3)
+                        val icStar4 = dialogView.findViewById<ImageView>(R.id.ic_star_4)
+                        val icStar5 = dialogView.findViewById<ImageView>(R.id.ic_star_5)
+
+                        var star = 5
+                        icStar1.setOnClickListener {
+                            setStar(1, dialogView)
+                            star = 1
+                        }
+                        icStar2.setOnClickListener {
+                            setStar(2, dialogView)
+                            star = 2
+                        }
+                        icStar3.setOnClickListener {
+                            setStar(3, dialogView)
+                            star = 3
+                        }
+                        icStar4.setOnClickListener {
+                            setStar(4, dialogView)
+                            star = 4
+                        }
+                        icStar5.setOnClickListener {
+                            setStar(5, dialogView)
+                            star = 5
+                        }
+                        val reviewContent =
+                            dialogView.findViewById<TextInputEditText>(R.id.et_review)
+                        dialogView.findViewById<Button>(R.id.btn_cancel).setOnClickListener {
+                            dialogBuilder.dismiss()
+                        }
+                        dialogView.findViewById<Button>(R.id.btn_submit).setOnClickListener {
+
+                            submitReview(
+                                response.uuid,
+                                star,
+                                reviewContent.text.toString()
+                            )
+                            dialogBuilder.dismiss()
+                        }
+                    }
                     btnSubmitAssigment.setOnClickListener {
                         findNavController().navigate(
                             ClassPreviewFragmentDirections.actionClassPreviewFragmentToClassProjectFragment(
@@ -90,6 +142,14 @@ class ClassPreviewFragment : Fragment() {
                     btnQuiz.setOnClickListener {
                         findNavController().navigate(
                             ClassPreviewFragmentDirections.actionClassPreviewFragmentToClassExamFragment(
+                                response.uuid
+                            )
+                        )
+                    }
+
+                    btnCertificate.setOnClickListener {
+                        findNavController().navigate(
+                            ClassPreviewFragmentDirections.actionClassPreviewFragmentToCertificateFragment(
                                 response.uuid
                             )
                         )
@@ -204,6 +264,79 @@ class ClassPreviewFragment : Fragment() {
                 }
             } else {
                 btnJoinClass.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun setStar(starClicked: Int, dialogView: View) {
+        val icStar1 = dialogView.findViewById<ImageView>(R.id.ic_star_1)
+        val icStar2 = dialogView.findViewById<ImageView>(R.id.ic_star_2)
+        val icStar3 = dialogView.findViewById<ImageView>(R.id.ic_star_3)
+        val icStar4 = dialogView.findViewById<ImageView>(R.id.ic_star_4)
+        val icStar5 = dialogView.findViewById<ImageView>(R.id.ic_star_5)
+
+        when (starClicked) {
+            1 -> {
+                icStar1.setImageResource(R.drawable.ic_star_yellow)
+                icStar2.setImageResource(R.drawable.ic_star_grey)
+                icStar3.setImageResource(R.drawable.ic_star_grey)
+                icStar4.setImageResource(R.drawable.ic_star_grey)
+                icStar5.setImageResource(R.drawable.ic_star_grey)
+            }
+            2 -> {
+                icStar1.setImageResource(R.drawable.ic_star_yellow)
+                icStar2.setImageResource(R.drawable.ic_star_yellow)
+                icStar3.setImageResource(R.drawable.ic_star_grey)
+                icStar4.setImageResource(R.drawable.ic_star_grey)
+                icStar5.setImageResource(R.drawable.ic_star_grey)
+            }
+            3 -> {
+                icStar1.setImageResource(R.drawable.ic_star_yellow)
+                icStar2.setImageResource(R.drawable.ic_star_yellow)
+                icStar3.setImageResource(R.drawable.ic_star_yellow)
+                icStar4.setImageResource(R.drawable.ic_star_grey)
+                icStar5.setImageResource(R.drawable.ic_star_grey)
+            }
+            4 -> {
+                icStar1.setImageResource(R.drawable.ic_star_yellow)
+                icStar2.setImageResource(R.drawable.ic_star_yellow)
+                icStar3.setImageResource(R.drawable.ic_star_yellow)
+                icStar4.setImageResource(R.drawable.ic_star_yellow)
+                icStar5.setImageResource(R.drawable.ic_star_grey)
+            }
+            5 -> {
+                icStar1.setImageResource(R.drawable.ic_star_yellow)
+                icStar2.setImageResource(R.drawable.ic_star_yellow)
+                icStar3.setImageResource(R.drawable.ic_star_yellow)
+                icStar4.setImageResource(R.drawable.ic_star_yellow)
+                icStar5.setImageResource(R.drawable.ic_star_yellow)
+            }
+        }
+    }
+
+    private fun submitReview(id: String, star: Int, reviewContent: String) {
+        viewModel.submitReview(id, star, reviewContent).observe(viewLifecycleOwner) { data ->
+            if (data != null) {
+                when (data) {
+                    is Resource.Success -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Berhasil memberikan review",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        binding.btnClassReview.visibility = View.GONE
+                        unlock(4)
+                    }
+                    else -> {
+                        Toast.makeText(
+                            requireContext(),
+                            "Gagal memberikan review",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
             }
         }
     }

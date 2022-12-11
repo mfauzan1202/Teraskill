@@ -1,7 +1,6 @@
 package id.co.mka.teraskill.ui.main.home
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,7 +10,6 @@ import com.bumptech.glide.Glide
 import id.co.mka.teraskill.R
 import id.co.mka.teraskill.data.responses.LearningPathResponse
 import id.co.mka.teraskill.databinding.ItemClassBinding
-import id.co.mka.teraskill.ui.classroom.ClassLearningActivity
 import id.co.mka.teraskill.ui.classroom.ClassLearningActivity.Companion.EXTRA_ID
 import id.co.mka.teraskill.ui.learning_path.LearningPathActivity
 

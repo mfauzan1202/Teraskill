@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.classroom.class_certificate.CertificateFragment"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    tools:context=".ui.classroom.class_certificate.CertificateFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -44,30 +44,41 @@
             tools:text="Sertifikat Kelas" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:srcCompat="@drawable/sertifikat" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login"
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:background="@color/background_color"
+        android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/button_blue"
-        android:hint="Download Sertifikat"
-        android:textColor="@color/success_color"
-        android:textColorHint="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5"
-        tools:layout_editor_absoluteX="30dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_download"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_download"
+        style="@style/style_buttonPrimary"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:paddingVertical="12dp"
+        android:text="Download Sertifikat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pdfView" />
 
+    <include
+        android:id="@+id/dialog_loading"
+        layout="@layout/dialog_loading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

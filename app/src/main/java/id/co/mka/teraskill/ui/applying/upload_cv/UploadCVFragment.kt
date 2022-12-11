@@ -77,7 +77,7 @@ class UploadCVFragment : Fragment() {
                                     findNavController().navigate(UploadCVFragmentDirections.actionUploadCVFragmentToVerificationProcessFragment())
                                 } else {
                                     showLoading(false, requireActivity())
-                                    Toast.makeText(requireContext(), "Failed", Toast.LENGTH_SHORT)
+                                    Toast.makeText(requireContext(), "Daftar Mentor gagal silahkan coba lagi nanti", Toast.LENGTH_SHORT)
                                         .show()
                                 }
                             }

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.co.mka.teraskill.databinding.FragmentClassProgressBinding
-import id.co.mka.teraskill.utils.Preferences
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClassProgressFragment : Fragment() {
@@ -20,7 +19,7 @@ class ClassProgressFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentClassProgressBinding.inflate(inflater, container, false)
         return binding.root
@@ -28,7 +27,6 @@ class ClassProgressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val token = Preferences(requireContext()).getValues("token")
 
         viewModel.getProgress().observe(viewLifecycleOwner) {
             if (it != null) {

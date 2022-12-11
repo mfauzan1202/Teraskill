@@ -19,7 +19,8 @@ class ApiConfig {
                             .addHeader("Authorization", "Bearer $authToken")
                             .build()
                     )
-                }.also {
+                }
+                .also {
                     if (BuildConfig.DEBUG) {
                         val logging = HttpLoggingInterceptor()
                         logging.setLevel(HttpLoggingInterceptor.Level.BODY)

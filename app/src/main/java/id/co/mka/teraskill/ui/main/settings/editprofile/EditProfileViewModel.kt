@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.co.mka.teraskill.data.dataclass.UserInfo
 import id.co.mka.teraskill.data.responses.AuthResponse
+import id.co.mka.teraskill.data.responses.MessageResponse
 import id.co.mka.teraskill.data.services.ApiConfig
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
@@ -20,15 +21,15 @@ class EditProfileViewModel(private val apiService: ApiService) : ViewModel() {
     fun updateProfile(
         uuid: String,
         data: UserInfo,
-    ): LiveData<Resource<AuthResponse?>> {
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse?>>()
+    ): LiveData<Resource<MessageResponse?>> {
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse?>>()
 
         apiService.updateUser(uuid, data)
-            .enqueue(object : Callback<AuthResponse> {
+            .enqueue(object : Callback<MessageResponse> {
 
                 override fun onResponse(
-                    call: Call<AuthResponse>,
-                    response: Response<AuthResponse>
+                    call: Call<MessageResponse>,
+                    response: Response<MessageResponse>
                 ) {
                     if (response.isSuccessful) {
                         mutableLiveData.value = Resource.Success(response.body())
@@ -37,7 +38,7 @@ class EditProfileViewModel(private val apiService: ApiService) : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                     when (t) {
                         is java.net.SocketTimeoutException -> {
                             mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)

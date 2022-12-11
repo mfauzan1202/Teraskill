@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_classPreviewFragment_to_classProjectFragment"
             app:destination="@id/classProjectFragment" />
+        <action
+            android:id="@+id/action_classPreviewFragment_to_certificateFragment"
+            app:destination="@id/certificateFragment" />
     </fragment>
     <fragment
         android:id="@+id/classTheoryFragment"
@@ -67,6 +70,15 @@
         <action
             android:id="@+id/action_classProjectFragment_to_classSubmissionFragment"
             app:destination="@id/classSubmissionFragment" />
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/certificateFragment"
+        android:name="id.co.mka.teraskill.ui.classroom.class_certificate.CertificateFragment"
+        android:label="fragment_certificate"
+        tools:layout="@layout/fragment_certificate" >
         <argument
             android:name="uuid"
             app:argType="string" />

@@ -96,4 +96,6 @@
     <string name="btn_join_class">Gabung Kelas</string>
     <string name="btn_back">Kembali ke Halaman Projek</string>
     <string name="btn_class_review">Review Kelas</string>
+    <string name="et_selfDescription">Deskripsikan Diri Anda...</string>
+    <string name="et_projectDescription">Masukkan Deskripsi Projek...</string>
 </resources>

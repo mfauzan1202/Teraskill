@@ -4,13 +4,14 @@ import id.co.mka.teraskill.data.dataclass.UserInfo
 import id.co.mka.teraskill.data.responses.*
 import id.co.mka.teraskill.data.responses.SingleClassResponse
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
 
     @POST("user")
-    fun registerUser(@Body response: RequestBody): Call<AuthResponse>
+    fun registerUser(@Body response: RequestBody): Call<MessageResponse>
 
     @Headers("Content-Type: application/json")
     @POST("login")
@@ -19,29 +20,29 @@ interface ApiService {
     @POST("user/forget-pw/send/")
     fun sendEmailForgotPass(
         @Body response: HashMap<String, String>
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @POST("user/forget-pw/resend")
     fun resendEmailForgotPass(
         @Body response: HashMap<String, String>
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @POST("user/forget-pw/verify/")
     fun sendOTPCodeForgotPass(
         @Body response: HashMap<String, Any>
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @POST("user/forget-pw")
     fun changePassword(
         @Body response: HashMap<String, String>
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @Headers("Content-Type: application/json")
     @PATCH("user/{uuid}")
     fun updateUser(
         @Path("uuid") uuid: String,
         @Body response: UserInfo
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @PATCH("user/avatar/{uuid}")
     fun updateUserAvatar(
@@ -52,7 +53,7 @@ interface ApiService {
     @POST("gabung-mentor")
     fun uploadFile(
         @Body body: RequestBody
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @GET("kelas-user/progress")
     fun getProgress(): Call<ClassProgressResponse>
@@ -107,12 +108,12 @@ interface ApiService {
     @POST("user/email/verify")
     fun verifyEmail(
         @Body response: HashMap<String, Any>
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @POST("user/resend-verify-email")
     fun resendVerifyEmail(
         @Body response: HashMap<String, Any>
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
 
     @POST("kelas-user")
     fun buyClass(
@@ -141,9 +142,31 @@ interface ApiService {
         @Path("uuid") uuid: String
     ): Call<List<ProjectResponse>>
 
-    @POST("/projek/answer/{uuid}")
+    @POST("projek/answer/{uuid}")
     fun submitProject(
         @Path("uuid") uuid: String,
         @Body response: HashMap<String, String>
-    ): Call<AuthResponse>
+    ): Call<MessageResponse>
+
+    @PATCH("/kelas/review/{uuid}")
+    fun submitReview(
+        @Path("uuid") uuid: String,
+        @Body response: HashMap<String, String>
+    ): Call<MessageResponse>
+
+    @GET("portofolio/me")
+    fun getPortfolio(): Call<List<PortfolioResponse>>
+
+    @POST("portofolio")
+    fun addPortfolio(
+        @Body response: RequestBody
+    ): Call<MessageResponse>
+
+    @GET("kelas-user/sertifikat/cek/kelas/{uuid}")
+    fun getLinkPdfFile(
+        @Path("uuid") uuid: String
+    ): Call<CertificateResponse>
+
+    @GET
+    fun downloadPdfFile(@Url pdfUrl: String): Call<ResponseBody>
 }

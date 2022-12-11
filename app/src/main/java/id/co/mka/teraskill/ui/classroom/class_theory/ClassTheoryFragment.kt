@@ -72,7 +72,8 @@ class ClassTheoryFragment : Fragment() {
             viewModel.getDetailClass(args.uuidClass).observe(viewLifecycleOwner) {
                 if (it != null) {
                     prepareDataModule(it.response.moduls)
-                    (requireActivity() as AppCompatActivity).supportActionBar?.title = it.response.name
+                    (requireActivity() as AppCompatActivity).supportActionBar?.title =
+                        it.response.name
 
                     for (data in 0 until it.response.moduls.size) {
                         classViewModel.getSubChapter(it.response.moduls[data].uuid)
@@ -86,7 +87,7 @@ class ClassTheoryFragment : Fragment() {
                                             val dataSize = module.data!!.size
                                             for (i in 0 until dataSize) {
                                                 val moduleData = module.data[i]
-                                                if (moduleData.statusProgress.status == "unread") {
+                                                if (moduleData.statusProgress == "unread") {
                                                     pointerChapter = moduleData.uuid
                                                     when {
                                                         moduleData.content != null -> {
@@ -107,7 +108,7 @@ class ClassTheoryFragment : Fragment() {
                                                         moduleData.uuid
                                                     )
                                                     break
-                                                } else if (i == dataSize - 1 && moduleData.statusProgress.status == "readed") {
+                                                } else if (i == dataSize - 1 && moduleData.statusProgress == "readed") {
                                                     pointerChapter = moduleData.uuid
                                                     when {
                                                         moduleData.content != null -> {
@@ -131,7 +132,10 @@ class ClassTheoryFragment : Fragment() {
                                                 }
                                             }
                                         }
-                                        prepareDataChapter(it.response.moduls[data].urutan, module.data)
+                                        prepareDataChapter(
+                                            it.response.moduls[data].urutan,
+                                            module.data
+                                        )
                                     }
                                 }
                             }
@@ -155,9 +159,13 @@ class ClassTheoryFragment : Fragment() {
                                 pointerChapter = nextChapter.uuid
                                 updateProgress(thisChapter, nextChapter)
                                 break@myloop
-                            }else if(j == listChapter[i]!!.size - 1 && i == listChapter.size){
+                            } else if (j == listChapter[i]!!.size - 1 && i == listChapter.size) {
                                 val thisChapter = listChapter[i]!![j]
-                                Toast.makeText(requireContext(), "Selamat anda telah menyelesaikan kelas ini", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Selamat anda telah menyelesaikan kelas ini",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 updateProgress(thisChapter, thisChapter)
                             }
                         }
@@ -270,9 +278,7 @@ class ClassTheoryFragment : Fragment() {
                             name = "tes",
                             uuid = listModule[index - 1]!!.uuid
                         ),
-                        statusProgress = ModulResponse.StatusProgressUser(
-                            status = "read"
-                        )
+                        "read"
                     )
                 )
         } else {

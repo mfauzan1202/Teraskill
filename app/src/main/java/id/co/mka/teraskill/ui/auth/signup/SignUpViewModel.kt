@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.co.mka.teraskill.data.dataclass.UserInfo
-import id.co.mka.teraskill.data.responses.AuthResponse
+import id.co.mka.teraskill.data.responses.MessageResponse
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
 import id.co.mka.teraskill.utils.toMultipartBody
@@ -16,8 +16,8 @@ import java.io.File
 
 class SignUpViewModel(private val apiService: ApiService) : ViewModel() {
 
-    fun signUpUser(data: UserInfo, file: File?): LiveData<Resource<AuthResponse?>> {
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse?>>()
+    fun signUpUser(data: UserInfo, file: File?): LiveData<Resource<MessageResponse?>> {
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse?>>()
         val body: MultipartBody
 
         if (file != null) {
@@ -41,8 +41,8 @@ class SignUpViewModel(private val apiService: ApiService) : ViewModel() {
                 .build()
         }
 
-        apiService.registerUser(body).enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+        apiService.registerUser(body).enqueue(object : Callback<MessageResponse> {
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
                 if (response.isSuccessful) {
                     mutableLiveData.value = Resource.Success(response.body())
                 } else {
@@ -51,7 +51,7 @@ class SignUpViewModel(private val apiService: ApiService) : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                 when (t) {
                     is java.net.SocketTimeoutException -> {
                         mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)

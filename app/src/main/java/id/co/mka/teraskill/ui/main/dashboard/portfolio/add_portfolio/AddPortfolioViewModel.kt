@@ -1,4 +1,4 @@
-package id.co.mka.teraskill.ui.auth.forgot_pass
+package id.co.mka.teraskill.ui.main.dashboard.portfolio.add_portfolio
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,30 +6,48 @@ import androidx.lifecycle.ViewModel
 import id.co.mka.teraskill.data.responses.MessageResponse
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
+import id.co.mka.teraskill.utils.toMultipartBody
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 
-class ForgotPasswordViewModel(
-    private val apiService: ApiService
-) : ViewModel() {
+class AddPortfolioViewModel(private val apiService: ApiService) : ViewModel() {
 
-    fun sendEmailForgotPass(email: String): LiveData<Resource<MessageResponse>> {
+    fun addPortfolio(
+        project_name: String,
+        position: String,
+        selfDesc: String,
+        projectDesc: String,
+        link: String,
+        image: File
+    ): LiveData<Resource<MessageResponse>> {
         val mutableLiveData = MutableLiveData<Resource<MessageResponse>>()
 
-        val requestBody = HashMap<String, String>()
-        requestBody["email"] = email
+        val requestBody = MultipartBody.Builder()
+            .setType(MultipartBody.FORM)
+            .addFormDataPart("project_name", project_name)
+            .addFormDataPart("posisi", position)
+            .addFormDataPart("deskripsi_diri", selfDesc)
+            .addFormDataPart("deskripsi_project", projectDesc)
+            .addFormDataPart("link", link)
+            .addPart(image.toMultipartBody("image", "image"))
+            .build()
 
-        apiService.sendEmailForgotPass(requestBody).enqueue(object :
-            Callback<MessageResponse> {
-            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
+        apiService.addPortfolio(requestBody).enqueue(object : Callback<MessageResponse> {
+            override fun onResponse(
+                call: Call<MessageResponse>,
+                response: Response<MessageResponse>
+            ) {
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
                         mutableLiveData.value = Resource.Success(body)
-                    }else{
-                        mutableLiveData.value = Resource.Error(null, response.message(), response.code())
                     }
+                } else {
+                    mutableLiveData.value =
+                        Resource.Error(null, response.message(), response.code())
                 }
             }
 

@@ -1,7 +1,6 @@
 package id.co.mka.teraskill.ui.learning_path
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,13 +14,6 @@ import id.co.mka.teraskill.ui.classroom.ClassLearningActivity
 
 class LearningPathAdapter :
     PagingDataAdapter<AllClassResponse, LearningPathAdapter.LearningPathViewHolder>(differCallback) {
-
-    var learningPathID: String = "0"
-
-    fun setLearningPath(id: String) {
-        learningPathID = id
-        notifyDataSetChanged()
-    }
 
     inner class LearningPathViewHolder(val binding: ItemClassLearningpathBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -39,16 +31,6 @@ class LearningPathAdapter :
             }
             itemView.visibility = View.VISIBLE
         }
-
-        fun erase() {
-            binding.apply {
-                tvItemName.text = ""
-                Glide.with(itemView.context)
-                    .load("")
-                    .into(ivItemImage)
-            }
-            itemView.visibility = View.GONE
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LearningPathViewHolder {
@@ -64,20 +46,7 @@ class LearningPathAdapter :
     override fun onBindViewHolder(holder: LearningPathViewHolder, position: Int) {
         val data = getItem(position)
         if (data != null) {
-//            when {
-//                learningPathID != 0 && learningPathID == data.learningPathId -> {
-//                    Log.d("Cakep", "DIFILTER")
-                    holder.bind(data)
-//                }
-//                learningPathID != 0 && learningPathID != data.learningPathId -> {
-//                    Log.d("Cakep", "DIHAPUS")
-//                    holder.erase()
-//                }
-//                learningPathID == 0 -> {
-//                    Log.d("Cakep", "DISANA")
-                    holder.bind(data)
-//                }
-//            }
+            holder.bind(data)
         }
     }
 

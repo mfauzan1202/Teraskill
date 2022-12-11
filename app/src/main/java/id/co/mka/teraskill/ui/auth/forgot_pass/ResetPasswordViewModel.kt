@@ -3,7 +3,7 @@ package id.co.mka.teraskill.ui.auth.forgot_pass
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.co.mka.teraskill.data.responses.AuthResponse
+import id.co.mka.teraskill.data.responses.MessageResponse
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
 import retrofit2.Call
@@ -16,16 +16,16 @@ class ResetPasswordViewModel(private val apiService: ApiService) : ViewModel() {
         email: String,
         password: String,
         password_confirmation: String
-    ): LiveData<Resource<AuthResponse>> {
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse>>()
+    ): LiveData<Resource<MessageResponse>> {
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse>>()
 
         val bodyRequest = HashMap<String, String>()
         bodyRequest["email"] = email
         bodyRequest["password"] = password
         bodyRequest["confpassword"] = password_confirmation
 
-        apiService.changePassword(bodyRequest).enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+        apiService.changePassword(bodyRequest).enqueue(object : Callback<MessageResponse> {
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
@@ -36,7 +36,7 @@ class ResetPasswordViewModel(private val apiService: ApiService) : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                 when (t) {
                     is java.net.SocketTimeoutException -> {
                         mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)

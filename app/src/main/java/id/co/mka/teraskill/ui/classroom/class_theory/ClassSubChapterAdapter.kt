@@ -40,7 +40,7 @@ class ClassSubChapterAdapter(private val onClickListener: ((ModulResponse) -> Un
                             itemView.context,
                             R.color.primary_color
                         )
-                    if (data.statusProgress.status == "readed"){
+                    if (data.statusProgress == "readed"){
                         ivCheckSubchapter.visibility = View.VISIBLE
                         ivCheckSubchapter.setImageResource(R.drawable.ic_check_on)
                     }
@@ -65,7 +65,7 @@ class ClassSubChapterAdapter(private val onClickListener: ((ModulResponse) -> Un
                         itemView.context,
                         R.color.soft_color_3
                     )
-                if (data.statusProgress.status == "readed"){
+                if (data.statusProgress == "readed"){
                     ivCheckSubchapter.visibility = View.VISIBLE
                     ivCheckSubchapter.setImageResource(R.drawable.ic_check)
                 } else {

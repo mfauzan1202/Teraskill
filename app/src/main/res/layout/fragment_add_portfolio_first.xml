@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
-    tools:context=".ui.main.dashboard.portfolio.AddPortfolioFirstFragment">
+    android:fillViewport="true"
+    tools:context=".ui.main.dashboard.portfolio.add_portfolio.AddPortfolioFirstFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,7 +33,10 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/bg_textinput_transparent"
+            android:gravity="top"
+            android:hint="@string/et_selfDescription"
             android:inputType="textLongMessage"
+            android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_uploadImage" />
@@ -57,12 +61,16 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/bg_textinput_transparent"
+            android:gravity="top"
+            android:hint="@string/et_projectDescription"
             android:inputType="textLongMessage"
+            android:padding="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_header_selfDescription" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next"
             style="@style/style_buttonSecondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
