@@ -1,39 +1,36 @@
-package id.co.mka.teraskill.ui.auth.forgot_pass
+package id.co.mka.teraskill.ui.main.dashboard.portfolio.list_portfolio
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.co.mka.teraskill.data.responses.MessageResponse
+import id.co.mka.teraskill.data.responses.PortfolioResponse
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ForgotPasswordViewModel(
-    private val apiService: ApiService
-) : ViewModel() {
+class ListPortfolioViewModel(private val apiService: ApiService): ViewModel() {
 
-    fun sendEmailForgotPass(email: String): LiveData<Resource<MessageResponse>> {
-        val mutableLiveData = MutableLiveData<Resource<MessageResponse>>()
+    fun getListPortfolio(): LiveData<Resource<List<PortfolioResponse>>> {
+        val mutableLiveData = MutableLiveData<Resource<List<PortfolioResponse>>>()
 
-        val requestBody = HashMap<String, String>()
-        requestBody["email"] = email
-
-        apiService.sendEmailForgotPass(requestBody).enqueue(object :
-            Callback<MessageResponse> {
-            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
+        apiService.getPortfolio().enqueue(object : Callback<List<PortfolioResponse>>{
+            override fun onResponse(
+                call: Call<List<PortfolioResponse>>,
+                response: Response<List<PortfolioResponse>>
+            ) {
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
                         mutableLiveData.value = Resource.Success(body)
-                    }else{
-                        mutableLiveData.value = Resource.Error(null, response.message(), response.code())
                     }
+                } else {
+                    mutableLiveData.value = Resource.Error(null, "Gagal mengambil data", response.code())
                 }
             }
 
-            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<PortfolioResponse>>, t: Throwable) {
                 when (t) {
                     is java.net.SocketTimeoutException -> {
                         mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)

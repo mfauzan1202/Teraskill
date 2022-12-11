@@ -3,7 +3,7 @@ package id.co.mka.teraskill.ui.classroom.class_project
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.co.mka.teraskill.data.responses.AuthResponse
+import id.co.mka.teraskill.data.responses.MessageResponse
 import id.co.mka.teraskill.data.responses.ProjectResponse
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
@@ -49,13 +49,13 @@ class ClassProjectViewModel(private val apiService: ApiService) : ViewModel() {
         return mutableLiveData
     }
 
-    fun uploadProjectLink(uuid: String, link: String): LiveData<Resource<AuthResponse>> {
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse>>()
+    fun uploadProjectLink(uuid: String, link: String): LiveData<Resource<MessageResponse>> {
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse>>()
 
         val requestBody = HashMap<String, String>()
         requestBody["link"] = link
-        apiService.submitProject(uuid, requestBody).enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+        apiService.submitProject(uuid, requestBody).enqueue(object : Callback<MessageResponse> {
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
@@ -64,7 +64,7 @@ class ClassProjectViewModel(private val apiService: ApiService) : ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                 when (t) {
                     is java.net.SocketTimeoutException -> {
                         mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)

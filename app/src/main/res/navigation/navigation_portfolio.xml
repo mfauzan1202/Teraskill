@@ -6,7 +6,7 @@
     app:startDestination="@id/listPortfolioFragment">
     <fragment
         android:id="@+id/addPortfolioFirstFragment"
-        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.AddPortfolioFirstFragment"
+        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.add_portfolio.AddPortfolioFirstFragment"
         android:label="fragment_add_portfolio_first"
         tools:layout="@layout/fragment_add_portfolio_first" >
         <action
@@ -15,12 +15,22 @@
     </fragment>
     <fragment
         android:id="@+id/addPortfolioSecondFragment"
-        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.AddPortfolioSecondFragment"
+        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.add_portfolio.AddPortfolioSecondFragment"
         android:label="fragment_add_portfolio_second"
-        tools:layout="@layout/fragment_add_portfolio_second" />
+        tools:layout="@layout/fragment_add_portfolio_second" >
+        <argument
+            android:name="selfDesc"
+            app:argType="string" />
+        <argument
+            android:name="projectDesc"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addPortfolioSecondFragment_to_listPortfolioFragment"
+            app:destination="@id/listPortfolioFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listPortfolioFragment"
-        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.ListPortfolioFragment"
+        android:name="id.co.mka.teraskill.ui.main.dashboard.portfolio.list_portfolio.ListPortfolioFragment"
         android:label="fragment_list_portfolio"
         tools:layout="@layout/fragment_list_portfolio" >
         <action

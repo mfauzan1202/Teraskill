@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -20,8 +19,8 @@ import id.co.mka.teraskill.R
 import id.co.mka.teraskill.data.dataclass.UserInfo
 import id.co.mka.teraskill.databinding.FragmentSignUpBinding
 import id.co.mka.teraskill.utils.*
-import java.io.File
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.File
 
 class SignUpFragment : Fragment() {
 
@@ -142,13 +141,13 @@ class SignUpFragment : Fragment() {
                 editText == etPassword && editText.text.toString().length < 8 -> setError(
                     textInputLayout,
                     editText,
-                    "Tolong masukkan password sedikitnya 8 karakter",
+                    "Tolong masukkan Kata sandi sedikitnya 8 karakter",
                     requireContext()
                 )
                 editText == etVerifyPassword && editText.text.toString() != etPassword.text.toString() -> setError(
                     textInputLayout,
                     editText,
-                    "Password yang anda masukkan tidak sama",
+                    "Kata sandi yang anda masukkan tidak sama",
                     requireContext()
                 )
                 editText == etEmail && !isEmailValid(editText.text.toString()) -> setError(

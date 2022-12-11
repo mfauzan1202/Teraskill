@@ -149,7 +149,10 @@ class ClassPreviewFragment : Fragment() {
 
                     btnCertificate.setOnClickListener {
                         findNavController().navigate(
-                            ClassPreviewFragmentDirections.actionClassPreviewFragmentToCertificateFragment())
+                            ClassPreviewFragmentDirections.actionClassPreviewFragmentToCertificateFragment(
+                                response.uuid
+                            )
+                        )
                     }
                 }
             }

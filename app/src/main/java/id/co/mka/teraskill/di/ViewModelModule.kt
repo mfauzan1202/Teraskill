@@ -15,6 +15,8 @@ import id.co.mka.teraskill.ui.classroom.class_theory.ClassSubChapterViewModel
 import id.co.mka.teraskill.ui.learning_path.LearningPathViewModel
 import id.co.mka.teraskill.ui.main.dashboard.class_progress.ClassProgressViewModel
 import id.co.mka.teraskill.ui.main.dashboard.my_class.MyClassViewModel
+import id.co.mka.teraskill.ui.main.dashboard.portfolio.add_portfolio.AddPortfolioViewModel
+import id.co.mka.teraskill.ui.main.dashboard.portfolio.list_portfolio.ListPortfolioViewModel
 import id.co.mka.teraskill.ui.main.home.HomeViewModel
 import id.co.mka.teraskill.ui.main.settings.editprofile.EditProfileViewModel
 import id.co.mka.teraskill.ui.main.settings.transaction_history.TransactionHistoryViewModel
@@ -51,6 +53,8 @@ val viewModelModule = module {
     /** main/dashboard ViewModel */
     viewModel { ClassProgressViewModel(get()) }
     viewModel { MyClassViewModel(get()) }
+    viewModel { ListPortfolioViewModel(get()) }
+    viewModel { AddPortfolioViewModel(get()) }
 
     /** main/home ViewModel */
     viewModel { HomeViewModel(get()) }

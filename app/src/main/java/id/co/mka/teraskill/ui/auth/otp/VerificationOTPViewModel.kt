@@ -3,7 +3,7 @@ package id.co.mka.teraskill.ui.auth.otp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.co.mka.teraskill.data.responses.AuthResponse
+import id.co.mka.teraskill.data.responses.MessageResponse
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
 import retrofit2.Call
@@ -12,15 +12,15 @@ import retrofit2.Response
 
 class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel() {
 
-    fun sendOTP(email: String, token: Int): LiveData<Resource<AuthResponse?>> {
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse?>>()
+    fun sendOTP(email: String, token: Int): LiveData<Resource<MessageResponse?>> {
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse?>>()
 
         val otpRequest = HashMap<String, Any>()
         otpRequest["email"] = email
         otpRequest["token"] = token
 
-        apiService.verifyEmail(otpRequest).enqueue(object : Callback<AuthResponse> {
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+        apiService.verifyEmail(otpRequest).enqueue(object : Callback<MessageResponse> {
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
                 if (response.isSuccessful) {
                     mutableLiveData.value = Resource.Success(response.body())
                 } else {
@@ -29,7 +29,7 @@ class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel()
                 }
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                 when (t) {
                     is java.net.SocketTimeoutException -> {
                         mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)
@@ -49,17 +49,17 @@ class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel()
         return mutableLiveData
     }
 
-    fun resendOTP(email: String): LiveData<Resource<AuthResponse?>> {
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse?>>()
+    fun resendOTP(email: String): LiveData<Resource<MessageResponse?>> {
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse?>>()
 
         val otpRequest = HashMap<String, Any>()
         otpRequest["email"] = email
 
         apiService.resendVerifyEmail(otpRequest)
-            .enqueue(object : Callback<AuthResponse> {
+            .enqueue(object : Callback<MessageResponse> {
                 override fun onResponse(
-                    call: Call<AuthResponse>,
-                    response: Response<AuthResponse>
+                    call: Call<MessageResponse>,
+                    response: Response<MessageResponse>
                 ) {
                     if (response.isSuccessful) {
                         mutableLiveData.value = Resource.Success(response.body())
@@ -70,7 +70,7 @@ class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel()
 
                 }
 
-                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+                override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                     when (t) {
                         is java.net.SocketTimeoutException -> {
                             mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)
@@ -87,15 +87,15 @@ class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel()
         return mutableLiveData
     }
 
-    fun sendOTPResetPassword(email: String, token: Int): LiveData<Resource<AuthResponse>>{
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse>>()
+    fun sendOTPResetPassword(email: String, token: Int): LiveData<Resource<MessageResponse>>{
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse>>()
 
         val otpRequest = HashMap<String, Any>()
         otpRequest["email"] = email
         otpRequest["token"] = token
 
-        apiService.sendOTPCodeForgotPass(otpRequest).enqueue(object : Callback<AuthResponse>{
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+        apiService.sendOTPCodeForgotPass(otpRequest).enqueue(object : Callback<MessageResponse>{
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
                 if (response.isSuccessful){
                     val body = response.body()
                     if (body != null){
@@ -106,7 +106,7 @@ class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel()
                 }
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                 when (t) {
                     is java.net.SocketTimeoutException -> {
                         mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)
@@ -126,14 +126,14 @@ class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel()
         return mutableLiveData
     }
 
-    fun resendOTPResetPassword(email: String): LiveData<Resource<AuthResponse>>{
-        val mutableLiveData = MutableLiveData<Resource<AuthResponse>>()
+    fun resendOTPResetPassword(email: String): LiveData<Resource<MessageResponse>>{
+        val mutableLiveData = MutableLiveData<Resource<MessageResponse>>()
 
         val otpRequest = HashMap<String, String>()
         otpRequest["email"] = email
 
-        apiService.resendEmailForgotPass(otpRequest).enqueue(object : Callback<AuthResponse>{
-            override fun onResponse(call: Call<AuthResponse>, response: Response<AuthResponse>) {
+        apiService.resendEmailForgotPass(otpRequest).enqueue(object : Callback<MessageResponse>{
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
                 if (response.isSuccessful){
                     val body = response.body()
                     if (body != null){
@@ -144,7 +144,7 @@ class VerificationOTPViewModel(private val apiService: ApiService) : ViewModel()
                 }
             }
 
-            override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
                 when (t) {
                     is java.net.SocketTimeoutException -> {
                         mutableLiveData.value = Resource.Error(null, "Koneksi Bermasalah", 0)

@@ -78,5 +78,9 @@
         android:id="@+id/certificateFragment"
         android:name="id.co.mka.teraskill.ui.classroom.class_certificate.CertificateFragment"
         android:label="fragment_certificate"
-        tools:layout="@layout/fragment_certificate" />
+        tools:layout="@layout/fragment_certificate" >
+        <argument
+            android:name="uuid"
+            app:argType="string" />
+    </fragment>
 </navigation>

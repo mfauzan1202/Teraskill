@@ -20,13 +20,13 @@ class ApiConfig {
                             .build()
                     )
                 }
-//                .also {
-//                    if (BuildConfig.DEBUG) {
-//                        val logging = HttpLoggingInterceptor()
-//                        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-//                        it.addInterceptor(logging)
-//                    }
-//                }
+                .also {
+                    if (BuildConfig.DEBUG) {
+                        val logging = HttpLoggingInterceptor()
+                        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+                        it.addInterceptor(logging)
+                    }
+                }
                 .build()
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)

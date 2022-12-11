@@ -57,6 +57,7 @@ class LearningPathActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+
             Glide.with(this@LearningPathActivity)
                 .load(preferences.getValues("avatar"))
                 .into(ivProfilePicture)

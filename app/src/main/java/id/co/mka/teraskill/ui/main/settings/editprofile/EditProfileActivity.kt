@@ -17,7 +17,8 @@ import id.co.mka.teraskill.utils.*
 import java.io.File
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EditProfileActivity : AppCompatActivity() {
+class
+EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
     private val viewModel: EditProfileViewModel by viewModel()

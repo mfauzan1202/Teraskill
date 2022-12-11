@@ -13,7 +13,6 @@ import android.text.style.ClickableSpan
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -63,7 +62,7 @@ fun isErrorOrEmpty(
     when {
         editText.text.toString().isEmpty() -> {
             editText.requestFocus()
-            setError(textInputLayout, editText, "Field tidak boleh kosong", editText.context)
+            setError(textInputLayout, editText, "Kolom tidak boleh kosong", editText.context)
             if (textInputLayout.error != null) {
                 editText.afterTextChanged {
                     removeError(textInputLayout, editText, editText.context)
