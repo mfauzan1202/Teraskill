@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".WebinarRegistrationActivity"
+            android:name=".ui.main.dashboard.webinar.WebinarRegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.dashboard.webinar.DetailWebinarsActivity"

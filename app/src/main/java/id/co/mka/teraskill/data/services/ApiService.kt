@@ -169,4 +169,7 @@ interface ApiService {
 
     @GET
     fun downloadPdfFile(@Url pdfUrl: String): Call<ResponseBody>
+
+    @GET("webinar/")
+    fun getWebinar(): Call<List<WebinarResponse>>
 }

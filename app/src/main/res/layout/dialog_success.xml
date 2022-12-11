@@ -37,7 +37,7 @@
         android:layout_width="250dp"
         android:layout_height="41dp"
         android:layout_marginHorizontal="26dp"
-        android:text="Link <b>Grup Webinar</b>  telah dikirimkan ke email anda"
+        android:text="Link Grup Webinar telah dikirimkan ke email anda"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"

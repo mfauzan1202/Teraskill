@@ -1,7 +1,8 @@
-package id.co.mka.teraskill
+package id.co.mka.teraskill.ui.main.dashboard.webinar
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import id.co.mka.teraskill.R
 
 class WebinarRegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
