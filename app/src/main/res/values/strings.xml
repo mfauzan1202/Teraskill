@@ -75,7 +75,7 @@
     <string name="tv_desc_checkoutClass">Belajar bersama kami menuju\nmasa depan yang lebih baik</string>
     <string name="tv_checkout_kelas">Checkout Kelas</string>
     <string name="tv_detail_buy">Detail Pembelian</string>
-    <string name="tv_name_user">Nama Pengguna</string>
+    <string name="tv_name_user">Nama Pelanggan</string>
     <string name="tv_learning_path">Jenis Pembelajaran</string>
     <string name="tv_class_name">Nama Kelas</string>
     <string name="tv_payment_method">Metode Pembayaran</string>
@@ -98,4 +98,5 @@
     <string name="btn_class_review">Review Kelas</string>
     <string name="et_selfDescription">Deskripsikan Diri Anda...</string>
     <string name="et_projectDescription">Masukkan Deskripsi Projek...</string>
+    <string name="btn_join_webinar">Gabung Webinar</string>
 </resources>

@@ -27,6 +27,12 @@
         <action
             android:id="@+id/action_termsAndConditionFragment_to_biodataFragment"
             app:destination="@id/biodataFragment" />
+        <action
+            android:id="@+id/action_termsAndConditionFragment_to_verificationProcessFragment"
+            app:destination="@id/verificationProcessFragment" />
+        <action
+            android:id="@+id/action_termsAndConditionFragment_to_verifiedFragment"
+            app:destination="@id/verifiedFragment" />
     </fragment>
     <fragment
         android:id="@+id/biodataFragment"

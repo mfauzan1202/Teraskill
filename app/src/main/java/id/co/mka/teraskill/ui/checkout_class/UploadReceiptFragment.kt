@@ -2,7 +2,6 @@ package id.co.mka.teraskill.ui.checkout_class
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,7 +63,7 @@ class UploadReceiptFragment : Fragment() {
             }
 
             btnConfirmation.setOnClickListener {
-                if (imageFile == null || binding.etRefNumber.text.toString().isEmpty()) {
+                if (imageFile == null) {
                     Toast.makeText(
                         requireContext(),
                         "Pilih bukti pembayaran terlebih dahulu",
@@ -99,7 +98,7 @@ class UploadReceiptFragment : Fragment() {
         viewModel.uploadReceipt(
             token!!,
             imageFile!!,
-            binding.etRefNumber.text.toString(),
+            binding.tvRefNumber.text.toString(),
             args.classUuid
         ).observe(viewLifecycleOwner) {
             if (it == "Berhasil mengirim bukti pembayaran") {

@@ -3,10 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    android:layout_gravity="start"
     android:layout_width="165dp"
     android:layout_height="200dp"
-    android:layout_marginStart="20dp"
     android:layout_marginBottom="20dp"
     card_view:cardCornerRadius="6dp">
 
@@ -48,10 +46,11 @@
             android:layout_height="21dp"
             android:layout_marginHorizontal="12dp"
             android:layout_marginTop="5dp"
-            android:background="#5B8CD3"
+            android:background="@drawable/button_blue"
             android:fontFamily="@font/inter_medium"
-            android:hint="Sabtu, 11 September"
-            android:textColorHint="@color/white"
+            android:text="Sabtu, 11 September"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="8.25dp"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@id/tv_item_name" />

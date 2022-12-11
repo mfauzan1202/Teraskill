@@ -10,6 +10,7 @@ import id.co.mka.teraskill.data.dataclass.MenuButton
 import id.co.mka.teraskill.databinding.ItemMenuButtonBinding
 import id.co.mka.teraskill.ui.applying.ApplyingActivity
 import id.co.mka.teraskill.ui.learning_path.LearningPathActivity
+import id.co.mka.teraskill.ui.main.home.webinar.WebinarsActivity
 
 
 class HomeAdapter(private val buttonData: List<MenuButton>) :
@@ -33,12 +34,8 @@ class HomeAdapter(private val buttonData: List<MenuButton>) :
                             context.startActivity(intent)
                         }
                         2 -> {
-                            //TODO: Not Implemented yet
-                            Toast.makeText(
-                                context,
-                                "Work in Progress, Comeback Later :)",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            val intent = Intent(context, WebinarsActivity::class.java)
+                            context.startActivity(intent)
                         }
                         3 -> {
                             //TODO: Not Implemented yet
