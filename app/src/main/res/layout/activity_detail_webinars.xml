@@ -1,184 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.dashboard.webinar.DetailWebinarsActivity">
+    android:background="@color/background_color"
+    tools:context=".ui.main.home.webinar.DetailWebinarsActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/btn_back"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/iv_pamflet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="32dp"
+                android:background="@null"
+                android:src="@drawable/ic_arrow_back_black"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_pamflet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="32dp"
-            android:background="@null"
-            android:src="@drawable/ic_arrow_back_black"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:adjustViewBounds="true"
+            android:src="@drawable/pamflet_webinars"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_pamflet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/pamflet_webinars"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/iv_pamflet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_pamflet">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/webinars_type"
-                android:layout_width="99dp"
-                android:layout_height="21dp"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/button_blue"
-                android:fontFamily="@font/inter_medium"
-                android:hint="UI/UX Design"
-                android:textColorHint="@color/white"
-                android:textSize="8.25dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/inter"
-                android:text="Introduction To UI/UX “UI/UX Talks”"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/webinars_type" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/webinars_type"
+                    android:layout_width="99dp"
+                    android:layout_height="21dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/button_blue"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="UI/UX Design"
+                    android:textColor="@color/white"
+                    android:textSize="8.25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/line1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/ic_line_126"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/inter"
+                    android:text="Introduction To UI/UX “UI/UX Talks”"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/webinars_type" />
 
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:drawableStart="@drawable/ic_baseline_calendar_month_24"
-                android:drawablePadding="11dp"
-                android:gravity="center|center_horizontal"
-                android:text="Zoom"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/line1"
-                app:layout_constraintTop_toBottomOf="@+id/line1" />
+                <ImageView
+                    android:id="@+id/line1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_line_126"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
-            <TextView
-                android:id="@+id/tv_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="11dp"
-                android:gravity="center|center_horizontal"
-                android:text="18.40-20.00 WIB"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_date"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.912"
-                app:layout_constraintStart_toEndOf="@+id/tv_date"
-                app:layout_constraintTop_toTopOf="@+id/tv_date"
-                app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableStart="@drawable/ic_baseline_calendar_month_24"
+                    android:drawablePadding="11dp"
+                    android:gravity="center|center_horizontal"
+                    android:text="Zoom"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/line1"
+                    app:layout_constraintTop_toBottomOf="@+id/line1" />
 
-            <ImageView
-                android:id="@+id/line2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/ic_line_126"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="11dp"
+                    android:gravity="center|center_horizontal"
+                    android:text="18.40-20.00 WIB"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.912"
+                    app:layout_constraintStart_toEndOf="@+id/tv_date"
+                    app:layout_constraintTop_toTopOf="@+id/tv_date"
+                    app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/tv_via"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="16dp"
-                android:drawableStart="@drawable/ic_zoom"
-                android:drawablePadding="11dp"
-                android:gravity="center|center_horizontal"
-                android:text="Zoom"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/line2"
-                app:layout_constraintTop_toBottomOf="@+id/line2" />
+                <ImageView
+                    android:id="@+id/line2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_line_126"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
-            <TextView
-                android:id="@+id/tv_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawablePadding="11dp"
-                android:gravity="center|center_horizontal"
-                android:text="Gratis"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_via"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.68"
-                app:layout_constraintStart_toEndOf="@+id/tv_via"
-                app:layout_constraintTop_toTopOf="@+id/tv_via"
-                app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/tv_via"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableStart="@drawable/ic_zoom"
+                    android:drawablePadding="11dp"
+                    android:gravity="center|center_horizontal"
+                    android:text="Zoom"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/line2"
+                    app:layout_constraintTop_toBottomOf="@+id/line2" />
 
-            <TextView
-                android:id="@+id/tv_organizer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="37dp"
-                android:drawableStart="@drawable/ic_fluent_organization_12_regular"
-                android:drawablePadding="11dp"
-                android:gravity="center|center_horizontal"
-                android:text="PT Media Kreasi Abadi"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_via" />
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="11dp"
+                    android:gravity="center|center_horizontal"
+                    android:text="Gratis"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_via"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.68"
+                    app:layout_constraintStart_toEndOf="@+id/tv_via"
+                    app:layout_constraintTop_toTopOf="@+id/tv_via"
+                    app:layout_constraintVertical_bias="0.0" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_organizer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="37dp"
+                    android:drawableStart="@drawable/ic_fluent_organization_12_regular"
+                    android:drawablePadding="11dp"
+                    android:gravity="center|center_horizontal"
+                    android:text="PT Media Kreasi Abadi"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_via" />
 
-    </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_join_webinar"
+            style="@style/style_buttonPrimary"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/btn_join_webinar"
+            android:paddingVertical="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

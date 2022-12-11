@@ -12,12 +12,15 @@ import androidx.navigation.fragment.findNavController
 import id.co.mka.teraskill.R
 import id.co.mka.teraskill.databinding.FragmentTermsAndConditionBinding
 import id.co.mka.teraskill.utils.NumberIndentSpan
+import id.co.mka.teraskill.utils.Resource
 import id.co.mka.teraskill.utils.spannableString
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TermsAndConditionFragment : Fragment() {
 
     private var _binding: FragmentTermsAndConditionBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: TermsAndConditionViewModel by viewModel()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -76,5 +79,27 @@ class TermsAndConditionFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    private fun getStatusApply() {
+        viewModel.getTermsAndCondition().observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {
+                }
+                is Resource.Success -> {
+                    if (it.data != null) {
+                        it.data[0].apply {
+                            if (this.statusPendaftaran == "Data sedang diproses") {
+                                findNavController().navigate(TermsAndConditionFragmentDirections.actionTermsAndConditionFragmentToVerificationProcessFragment())
+                            } else if (this.statusPendaftaran == "Pendaftaran diterima") {
+                                findNavController().navigate(TermsAndConditionFragmentDirections.actionTermsAndConditionFragmentToVerifiedFragment())
+                            }
+                        }
+                    }
+                }
+                is Resource.Error -> {
+                }
+            }
+        }
     }
 }

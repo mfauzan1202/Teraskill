@@ -1,14 +1,12 @@
-package id.co.mka.teraskill.ui.main.dashboard.webinar
+package id.co.mka.teraskill.ui.main.home.webinar
 
-import android.content.DialogInterface
-import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import id.co.mka.teraskill.data.responses.WebinarResponse
 import id.co.mka.teraskill.databinding.ItemWebinarsBinding
-import id.co.mka.teraskill.ui.main.dashboard.my_class.MyClassAdapter
 
 class WebinarAdapter(val onClickListener: (String) -> Unit) : RecyclerView.Adapter<WebinarAdapter.ViewHolder>() {
 
@@ -33,6 +31,7 @@ class WebinarAdapter(val onClickListener: (String) -> Unit) : RecyclerView.Adapt
                 itemDate.text = "${date[2]}-${date[1]}-${date[0]}"
             }
             itemView.setOnClickListener {
+                Log.d("TAG", "bind: ${data.uuid}")
                 onClickListener.invoke(data.uuid)
             }
         }

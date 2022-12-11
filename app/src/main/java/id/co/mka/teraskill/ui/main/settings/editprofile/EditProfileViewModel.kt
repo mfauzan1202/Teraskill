@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import id.co.mka.teraskill.data.dataclass.UserInfo
 import id.co.mka.teraskill.data.responses.AuthResponse
 import id.co.mka.teraskill.data.responses.MessageResponse
-import id.co.mka.teraskill.data.services.ApiConfig
 import id.co.mka.teraskill.data.services.ApiService
 import id.co.mka.teraskill.utils.Resource
 import id.co.mka.teraskill.utils.toMultipartBody
@@ -106,6 +105,4 @@ class EditProfileViewModel(private val apiService: ApiService) : ViewModel() {
             })
         return mutableLiveData
     }
-
-
 }

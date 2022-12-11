@@ -30,14 +30,18 @@ class TransactionHistoryAdapter(
                 }
                 tvPrice.text =
                     context.getString(R.string.price_format, transaction.nominal.toString())
-                if (transaction.status == "Terverifikasi") {
+                if (transaction.status == "Menunggu Pembayaran") {
                     btnStatus.background =
-                        AppCompatResources.getDrawable(context, R.drawable.button_green)
-                    btnStatus.text = transaction.status
-                } else {
+                        AppCompatResources.getDrawable(context, R.drawable.button_red)
+                    btnStatus.text = "Belum Dibayar"
+                }else if (transaction.status == "Pengecekan Pembayaran") {
                     btnStatus.background =
                         AppCompatResources.getDrawable(context, R.drawable.button_blue)
-                    btnStatus.text = transaction.status
+                    btnStatus.text = "Proses Verifikasi"
+                }else if (transaction.status == "Lunas") {
+                    btnStatus.background =
+                        AppCompatResources.getDrawable(context, R.drawable.button_green)
+                    btnStatus.text = "Terverifikasi"
                 }
                 itemView.setOnClickListener {
                     clickListener.invoke()

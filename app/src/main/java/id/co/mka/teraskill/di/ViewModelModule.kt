@@ -7,7 +7,6 @@ import id.co.mka.teraskill.ui.auth.otp.VerificationOTPViewModel
 import id.co.mka.teraskill.ui.auth.signin.SignInViewModel
 import id.co.mka.teraskill.ui.auth.signup.SignUpViewModel
 import id.co.mka.teraskill.ui.checkout_class.UploadReceiptViewModel
-import id.co.mka.teraskill.ui.classroom.class_certificate.CertificateViewModel
 import id.co.mka.teraskill.ui.classroom.class_exam.ClassExamViewModel
 import id.co.mka.teraskill.ui.classroom.class_preview.ClassPreviewViewModel
 import id.co.mka.teraskill.ui.classroom.class_project.ClassProjectViewModel
@@ -15,9 +14,11 @@ import id.co.mka.teraskill.ui.classroom.class_theory.ClassSubChapterViewModel
 import id.co.mka.teraskill.ui.learning_path.LearningPathViewModel
 import id.co.mka.teraskill.ui.main.dashboard.class_progress.ClassProgressViewModel
 import id.co.mka.teraskill.ui.main.dashboard.my_class.MyClassViewModel
-import id.co.mka.teraskill.ui.main.dashboard.webinar.WebinarViewModel
 import id.co.mka.teraskill.ui.main.dashboard.portfolio.add_portfolio.AddPortfolioViewModel
 import id.co.mka.teraskill.ui.main.dashboard.portfolio.list_portfolio.ListPortfolioViewModel
+import id.co.mka.teraskill.ui.main.home.webinar.DetailWebinarViewModel
+import id.co.mka.teraskill.ui.main.home.webinar.WebinarRegistrationViewModel
+import id.co.mka.teraskill.ui.main.home.webinar.WebinarViewModel
 import id.co.mka.teraskill.ui.main.home.HomeViewModel
 import id.co.mka.teraskill.ui.main.settings.editprofile.EditProfileViewModel
 import id.co.mka.teraskill.ui.main.settings.transaction_history.TransactionHistoryViewModel
@@ -57,6 +58,8 @@ val viewModelModule = module {
     viewModel { ListPortfolioViewModel(get()) }
     viewModel { AddPortfolioViewModel(get()) }
     viewModel { WebinarViewModel(get()) }
+    viewModel { DetailWebinarViewModel(get()) }
+    viewModel { WebinarRegistrationViewModel(get()) }
 
     /** main/home ViewModel */
     viewModel { HomeViewModel(get()) }

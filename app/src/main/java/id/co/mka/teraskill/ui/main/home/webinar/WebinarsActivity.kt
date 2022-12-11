@@ -1,10 +1,11 @@
-package id.co.mka.teraskill.ui.main.dashboard.webinar
+package id.co.mka.teraskill.ui.main.home.webinar
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import id.co.mka.teraskill.databinding.ActivityWebinarsBinding
+import id.co.mka.teraskill.ui.main.home.webinar.DetailWebinarsActivity.Companion.EXTRA_UUID
 import id.co.mka.teraskill.utils.Resource
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -13,9 +14,9 @@ class WebinarsActivity : AppCompatActivity() {
     private val viewModel: WebinarViewModel by viewModel()
     private val adapter: WebinarAdapter by lazy {
         WebinarAdapter {
-//            val intent = Intent(this, DetailWebinarsActivity::class.java)
-//            intent.putExtra(DetailWebinarsActivity.EXTRA_WEBINAR, it)
-//            startActivity(intent)
+            val intent = Intent(this, DetailWebinarsActivity::class.java)
+            intent.putExtra(EXTRA_UUID, it)
+            startActivity(intent)
         }
     }
 

@@ -172,4 +172,17 @@ interface ApiService {
 
     @GET("webinar/")
     fun getWebinar(): Call<List<WebinarResponse>>
+
+    @GET("webinar/id/{uuid}")
+    fun getWebinarUUID(
+        @Path("uuid") uuid: String
+    ): Call<SingleWebinarResponse>
+
+    @POST("webinar-user/")
+    fun registerWebinar(
+        @Body response: HashMap<String, Any>
+    ): Call<MessageResponse>
+
+    @GET("data-mentor")
+    fun getStatusApply(): Call<List<StatusApplyResponse>>
 }

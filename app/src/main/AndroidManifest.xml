@@ -23,13 +23,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.main.dashboard.webinar.WebinarRegistrationActivity"
+            android:name="id.co.mka.teraskill.ui.main.home.webinar.WebinarRegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.dashboard.webinar.DetailWebinarsActivity"
+            android:name="id.co.mka.teraskill.ui.main.home.webinar.DetailWebinarsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.dashboard.webinar.WebinarsActivity"
+            android:name="id.co.mka.teraskill.ui.main.home.webinar.WebinarsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.dashboard.portfolio.DetailPortfolioActivity"
