@@ -1,5 +1,6 @@
 package id.co.mka.teraskill.di
 
+import id.co.mka.teraskill.ui.applying.TermsAndConditionViewModel
 import id.co.mka.teraskill.ui.applying.upload_cv.UploadCVViewModel
 import id.co.mka.teraskill.ui.auth.forgot_pass.ForgotPasswordViewModel
 import id.co.mka.teraskill.ui.auth.forgot_pass.ResetPasswordViewModel
@@ -28,6 +29,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
     /** applying ViewModel */
     viewModel { UploadCVViewModel(get()) }
+    viewModel { TermsAndConditionViewModel(get()) }
 
     /** Auth ViewModel */
     viewModel { SignInViewModel(get()) }

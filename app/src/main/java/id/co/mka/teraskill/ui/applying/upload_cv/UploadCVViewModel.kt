@@ -17,10 +17,10 @@ import java.io.File
 
 class UploadCVViewModel(private val apiService: ApiService): ViewModel() {
 
-    fun uploadFile(job: String, file: File, data: ApplyData): LiveData<MessageResponse?> {
+    fun uploadFile(job: String, file: File, data: ApplyData, skill: String): LiveData<MessageResponse?> {
 
         val mutableLiveData = MutableLiveData<MessageResponse?>()
-
+        Log.d("TAG", "${data.birthData}")
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addPart(file.toMultipartBody("sertifikat", "pdf"))
@@ -31,6 +31,7 @@ class UploadCVViewModel(private val apiService: ApiService): ViewModel() {
             .addFormDataPart("nama_pemilik_rekening", data.accountName)
             .addFormDataPart("no_rekening", data.accountNumber)
             .addFormDataPart("bank", data.bankName)
+            .addFormDataPart("keahlian", skill)
             .build()
 
         apiService.uploadFile(body).enqueue(object : Callback<MessageResponse> {

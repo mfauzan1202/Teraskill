@@ -88,17 +88,28 @@ class VerificationOTPFragment : Fragment() {
                     }
                     if (it.data != null) {
                         showLoading(false, requireContext())
-                        findNavController().navigate(
-                            VerificationOTPFragmentDirections.actionVerificationOTPFragmentToResetPasswordFragment(
-                                args.email
+                        val dialogView = LayoutInflater.from(requireContext())
+                            .inflate(R.layout.dialog_verified, null)
+                        val dialogBuilder = AlertDialog.Builder(requireContext())
+                            .setView(dialogView)
+                            .show()
+                        dialogView.findViewById<Button>(R.id.btn_done).text = "Lanjutkan"
+                        dialogView.findViewById<Button>(R.id.btn_done).setOnClickListener {
+                            dialogBuilder.dismiss()
+                            showLoading(false, requireContext())
+                            findNavController().navigate(
+                                VerificationOTPFragmentDirections.actionVerificationOTPFragmentToResetPasswordFragment(
+                                    args.email
+                                )
                             )
-                        )
+                        }
                     }
                 }
                 is Resource.Error -> {
                     binding.apply {
                         btnVerif.isEnabled = true
                         btnVerif.text = "Verifikasi"
+                        showLoading(false, requireContext())
                     }
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                 }
@@ -159,11 +170,7 @@ class VerificationOTPFragment : Fragment() {
             when (it) {
                 is Resource.Success -> {
                     val dialogView = LayoutInflater.from(requireContext())
-                        .inflate(R.layout.dialog_register, null)
-                    dialogView.findViewById<TextView>(R.id.tv_dialogTitle).text =
-                        getString(R.string.alert_account_verified)
-                    dialogView.findViewById<TextView>(R.id.tv_dialogMessage).text =
-                        getString(R.string.alert_account_verified_message)
+                        .inflate(R.layout.dialog_verified, null)
                     val dialogBuilder = AlertDialog.Builder(requireContext())
                         .setView(dialogView)
                         .show()
@@ -174,6 +181,7 @@ class VerificationOTPFragment : Fragment() {
                     }
                 }
                 is Resource.Error -> {
+                    showLoading(false, requireContext())
                     when (it.statusCode) {
                         400 -> {
                             binding.apply {

@@ -9,14 +9,14 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView"
-        android:layout_width="215dp"
-        android:layout_height="88dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/icon_logo_teraskill" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView1"

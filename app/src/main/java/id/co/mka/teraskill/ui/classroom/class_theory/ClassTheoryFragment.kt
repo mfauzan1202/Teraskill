@@ -17,6 +17,7 @@ import id.co.mka.teraskill.data.responses.SingleClassResponse
 import id.co.mka.teraskill.databinding.FragmentClassTheoryBinding
 import id.co.mka.teraskill.ui.classroom.class_preview.ClassPreviewViewModel
 import id.co.mka.teraskill.utils.Resource
+import id.co.mka.teraskill.utils.showLoading
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClassTheoryFragment : Fragment() {
@@ -59,6 +60,7 @@ class ClassTheoryFragment : Fragment() {
                 findNavController().popBackStack()
             }
 
+            showLoading(true, requireContext())
             adapter = ClassTheoryAdapter {
                 when {
                     it.content != null -> setTextSubject(it.title, it.content)
@@ -91,12 +93,14 @@ class ClassTheoryFragment : Fragment() {
                                                     pointerChapter = moduleData.uuid
                                                     when {
                                                         moduleData.content != null -> {
+                                                            showLoading(false, requireContext())
                                                             setTextSubject(
                                                                 moduleData.title,
                                                                 moduleData.content
                                                             )
                                                         }
                                                         moduleData.link != null -> {
+                                                            showLoading(false, requireContext())
                                                             setVideoUrl(
                                                                 moduleData.title,
                                                                 moduleData.link
@@ -112,12 +116,14 @@ class ClassTheoryFragment : Fragment() {
                                                     pointerChapter = moduleData.uuid
                                                     when {
                                                         moduleData.content != null -> {
+                                                            showLoading(false, requireContext())
                                                             setTextSubject(
                                                                 moduleData.title,
                                                                 moduleData.content
                                                             )
                                                         }
                                                         moduleData.link != null -> {
+                                                            showLoading(false, requireContext())
                                                             setVideoUrl(
                                                                 moduleData.title,
                                                                 moduleData.link
@@ -144,6 +150,7 @@ class ClassTheoryFragment : Fragment() {
             }
 
             btnNextChapter.setOnClickListener {
+                showLoading(true, requireContext())
                 myloop@ for (i in 1 until listChapter.size + 1) {
                     for (j in 0 until listChapter[i]!!.size) {
                         if (listChapter[i]!![j].modul.uuid == pointerModule) {
@@ -151,6 +158,7 @@ class ClassTheoryFragment : Fragment() {
                                 val thisChapter = listChapter[i]!![j]
                                 val nextChapter = listChapter[i]!![j + 1]
                                 updateProgress(thisChapter, nextChapter)
+                                showLoading(false, requireContext())
                                 break@myloop
                             } else if (j == listChapter[i]!!.size - 1 && i < listChapter.size) {
                                 val thisChapter = listChapter[i]!![j]
@@ -158,9 +166,11 @@ class ClassTheoryFragment : Fragment() {
                                 pointerModule = nextChapter.modul.uuid
                                 pointerChapter = nextChapter.uuid
                                 updateProgress(thisChapter, nextChapter)
+                                showLoading(false, requireContext())
                                 break@myloop
                             } else if (j == listChapter[i]!!.size - 1 && i == listChapter.size) {
                                 val thisChapter = listChapter[i]!![j]
+                                showLoading(false, requireContext())
                                 Toast.makeText(
                                     requireContext(),
                                     "Selamat anda telah menyelesaikan kelas ini",
@@ -224,7 +234,7 @@ class ClassTheoryFragment : Fragment() {
                 is Resource.Error -> TODO()
                 is Resource.Loading -> TODO()
                 is Resource.Success -> {
-                    if (it.data!!.kelasUserMateris.status == "unread") {
+//                    if (it.data!!.kelasUserMateris.status == "unread") {
                         when {
                             nextChapter.content != null -> {
                                 setTextSubject(
@@ -244,7 +254,7 @@ class ClassTheoryFragment : Fragment() {
                             nextChapter.uuid
                         )
                         pointerChapter = nextChapter.uuid
-                    }
+//                    }
                 }
             }
         }
