@@ -58,9 +58,6 @@
             android:name=".ui.main.settings.editprofile.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.splash.SplashActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.splash.onboarding.OnboardActivity"
             android:exported="false" />
         <activity
@@ -76,7 +73,7 @@
             android:name=".ui.learning_path.LearningPathActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.splash.FirstSplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

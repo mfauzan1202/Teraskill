@@ -244,7 +244,9 @@ class ClassPreviewFragment : Fragment() {
                 if (status.materi == "materi sudah selesai") {
                     unlock(2)
                     if (status.exam_lulus == "lulus") {
-                        unlock(3)
+                        if (status.review != "sudah review") {
+                            unlock(3)
+                        }
                         btnQuiz.backgroundTintList =
                             AppCompatResources.getColorStateList(
                                 requireContext(),

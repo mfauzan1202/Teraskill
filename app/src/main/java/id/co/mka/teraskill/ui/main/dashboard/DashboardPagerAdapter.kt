@@ -20,7 +20,7 @@ class DashboardPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return 4
     }
 
 }

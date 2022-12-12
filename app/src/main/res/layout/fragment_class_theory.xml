@@ -98,6 +98,17 @@
                         android:visibility="gone"
                         tools:layout="@layout/fragment_class_theory_video" />
                 </androidx.cardview.widget.CardView>
+
+                <include
+                    android:id="@+id/dialog_loading"
+                    layout="@layout/dialog_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
@@ -163,7 +174,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/sw_theme"
                     tools:listitem="@layout/item_list_mainchapter" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>

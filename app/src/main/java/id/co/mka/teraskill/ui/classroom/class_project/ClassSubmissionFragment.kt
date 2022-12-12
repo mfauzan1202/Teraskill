@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import id.co.mka.teraskill.R
 import id.co.mka.teraskill.databinding.FragmentClassSubmissionBinding
 import id.co.mka.teraskill.utils.Resource
+import id.co.mka.teraskill.utils.showLoading
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClassSubmissionFragment : Fragment() {
@@ -46,10 +47,12 @@ class ClassSubmissionFragment : Fragment() {
     }
 
     private fun submitLink() {
+        showLoading(true, requireContext())
         viewModel.uploadProjectLink(args.uuid, binding.etLinkSubmission.text.toString())
             .observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
+                        showLoading(false, requireContext())
                         binding.apply {
                             btnSend.isEnabled = true
                             btnSend.text = "Kirim"
@@ -64,6 +67,7 @@ class ClassSubmissionFragment : Fragment() {
                     }
                     is Resource.Loading -> TODO()
                     is Resource.Success -> {
+                        showLoading(false, requireContext())
                         val dialogView = LayoutInflater.from(requireContext())
                             .inflate(R.layout.dialog_submit_submission, null)
                         val dialogBuilder = AlertDialog.Builder(requireContext())

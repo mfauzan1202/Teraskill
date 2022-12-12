@@ -13,6 +13,7 @@ import id.co.mka.teraskill.R
 import id.co.mka.teraskill.databinding.FragmentTermsAndConditionBinding
 import id.co.mka.teraskill.utils.NumberIndentSpan
 import id.co.mka.teraskill.utils.Resource
+import id.co.mka.teraskill.utils.showLoading
 import id.co.mka.teraskill.utils.spannableString
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,7 +25,7 @@ class TermsAndConditionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentTermsAndConditionBinding.inflate(inflater, container, false)
         return binding.root
@@ -32,6 +33,7 @@ class TermsAndConditionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        showLoading(true, requireContext())
         binding.apply {
 
             val list = arrayListOf(
@@ -73,6 +75,7 @@ class TermsAndConditionFragment : Fragment() {
             btnNext.setOnClickListener {
                 findNavController().navigate(TermsAndConditionFragmentDirections.actionTermsAndConditionFragmentToBiodataFragment())
             }
+            getStatusApply()
         }
     }
 
@@ -87,12 +90,18 @@ class TermsAndConditionFragment : Fragment() {
                 is Resource.Loading -> {
                 }
                 is Resource.Success -> {
+//                    showLoading(false, requireContext())
                     if (it.data != null) {
                         it.data[0].apply {
-                            if (this.statusPendaftaran == "Data sedang diproses") {
-                                findNavController().navigate(TermsAndConditionFragmentDirections.actionTermsAndConditionFragmentToVerificationProcessFragment())
-                            } else if (this.statusPendaftaran == "Pendaftaran diterima") {
-                                findNavController().navigate(TermsAndConditionFragmentDirections.actionTermsAndConditionFragmentToVerifiedFragment())
+                            when (this.statusPendaftaran) {
+                                "Data sedang diproses" -> {
+                                    findNavController().navigate(TermsAndConditionFragmentDirections.actionTermsAndConditionFragmentToVerificationProcessFragment())
+                                }
+                                "Pendaftaran diterima" -> {
+                                    findNavController().navigate(TermsAndConditionFragmentDirections.actionTermsAndConditionFragmentToVerifiedFragment())
+                                }
+                                else -> {
+                                }
                             }
                         }
                     }

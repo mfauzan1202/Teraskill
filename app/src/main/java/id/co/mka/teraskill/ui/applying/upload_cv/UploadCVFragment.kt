@@ -70,7 +70,7 @@ class UploadCVFragment : Fragment() {
                 showLoading(true, requireActivity())
                 when {
                     cbAgreement.isChecked && pdfFile != null -> {
-                        viewModel.uploadFile(job, pdfFile!!, args.data)
+                        viewModel.uploadFile(job, pdfFile!!, args.data, etSkill.text.toString())
                             .observe(viewLifecycleOwner) {
                                 if (it != null) {
                                     showLoading(false, requireActivity())

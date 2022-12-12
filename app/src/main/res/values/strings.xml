@@ -41,6 +41,7 @@
     <string name="tab_text_1">Progress Kelasmu</string>
     <string name="tab_text_2">Kelas Saya</string>
     <string name="tab_text_3">Portofolio</string>
+    <string name="tab_text_4">Webinar</string>
     <string name="desc_transaction_history">Cek histori transaksi anda</string>
     <string name="progress_video">%1$s Materi</string>
     <string name="verified">Terverifikasi</string>

@@ -16,6 +16,7 @@ import id.co.mka.teraskill.R
 import id.co.mka.teraskill.data.responses.ExamResponse
 import id.co.mka.teraskill.databinding.FragmentClassExamBinding
 import id.co.mka.teraskill.utils.Resource
+import id.co.mka.teraskill.utils.showLoading
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ClassExamFragment : Fragment() {
@@ -77,9 +78,11 @@ class ClassExamFragment : Fragment() {
     }
 
     private fun submitExam() {
+        showLoading(true, requireContext())
         viewModel.submitExam(args.uuid, questionTrueAnswer).observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Success -> {
+                    showLoading(false, requireContext())
                     val dialogView = LayoutInflater.from(requireContext())
                         .inflate(R.layout.dialog_exam_result, null)
                     val dialogBuilder = AlertDialog.Builder(requireContext())
