@@ -1,6 +1,7 @@
 package id.co.mka.teraskill.ui.main.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         val dataUser = Preferences(requireContext())
         val nickName = dataUser.getValues("name")!!.split(" ")[0]
 
+        Log.e("BISA GAK SIH ANJING", dataUser.getValues("token").toString())
         listMenu = HomeAdapter(buttonData)
         getLearningTypeData()
         getClassData()

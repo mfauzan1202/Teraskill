@@ -10,6 +10,7 @@ import android.os.Environment
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
@@ -17,6 +18,7 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.MutableLiveData
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import id.co.mka.teraskill.R
@@ -100,26 +102,28 @@ fun spannableString(
     view.movementMethod = LinkMovementMethod.getInstance()
 }
 
-fun File.toMultipartBody(name: String, type: String): MultipartBody.Part =
-    if (type == "image") {
-        MultipartBody.Part.createFormData(
-            name, this.name, this.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        )
-    } else {
-        MultipartBody.Part.createFormData(
-            name, this.name, this.asRequestBody("application/pdf".toMediaTypeOrNull())
-        )
-    }
+fun File.toMultipartBody(name: String): MultipartBody.Part =
+    MultipartBody.Part.createFormData(
+        name,
+        this.name,
+        this.asRequestBody("image/jpeg".toMediaTypeOrNull())
+    )
 
+fun File.toMultipartBodyPdf(name: String): MultipartBody.Part =
+    MultipartBody.Part.createFormData(
+        name, this.name, this.asRequestBody("application/pdf".toMediaTypeOrNull())
+    )
 
 fun uriToFile(selectedFile: Uri, context: Context, type: String): File {
     val contentResolver: ContentResolver = context.contentResolver
 
     val myFile: File = when (type) {
         "pdf" -> {
+            Log.e("TAG", "MASUK SINI HARUSNYA")
             createCustomTempFilePDF(context)
         }
         else -> {
+            Log.e("TAG", "MALAH MASUK SINI")
             createCustomTempFileImage(context)
         }
     }

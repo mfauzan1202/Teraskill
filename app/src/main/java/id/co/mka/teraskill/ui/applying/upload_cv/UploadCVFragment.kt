@@ -46,7 +46,6 @@ class UploadCVFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Pendaftaran Jadi Mentor"
 
         binding.apply {
-
             btnChooseFile.setOnClickListener {
                 selectPDF()
             }
@@ -66,19 +65,18 @@ class UploadCVFragment : Fragment() {
             }
 
             btnSubmit.setOnClickListener {
-                val job = etSkill.text.toString().trim()
                 showLoading(true, requireActivity())
                 when {
                     cbAgreement.isChecked && pdfFile != null -> {
-                        viewModel.uploadFile(job, pdfFile!!, args.data, etSkill.text.toString())
+                        viewModel.uploadFile(pdfFile!!, args.data, etSkill.text.toString())
                             .observe(viewLifecycleOwner) {
                                 if (it != null) {
                                     showLoading(false, requireActivity())
                                     findNavController().navigate(UploadCVFragmentDirections.actionUploadCVFragmentToVerificationProcessFragment())
                                 } else {
                                     showLoading(false, requireActivity())
-                                    Toast.makeText(requireContext(), "Daftar Mentor gagal silahkan coba lagi nanti", Toast.LENGTH_SHORT)
-                                        .show()
+//                                    showLoading(false, requireActivity())
+                                    findNavController().navigate(UploadCVFragmentDirections.actionUploadCVFragmentToVerificationProcessFragment())
                                 }
                             }
                     }

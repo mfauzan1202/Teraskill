@@ -59,11 +59,11 @@ class UploadReceiptViewModel(private val apiService: ApiService): ViewModel() {
 
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addPart(file.toMultipartBody("bukti_pembayaran", "image"))
+            .addPart(file.toMultipartBody("bukti_pembayaran"))
             .addFormDataPart("no_ref", noRef)
             .build()
 
-        ApiConfig.getApiService(token).getAllUserClass().enqueue(object : Callback<List<MyClassResponse>> {
+        ApiConfig.getApiService().getAllUserClass().enqueue(object : Callback<List<MyClassResponse>> {
             override fun onResponse(
                 call: Call<List<MyClassResponse>>,
                 response: Response<List<MyClassResponse>>
@@ -71,7 +71,7 @@ class UploadReceiptViewModel(private val apiService: ApiService): ViewModel() {
                 if (response.isSuccessful) {
                     response.body()!!.forEach { myClass ->
                         if (myClass.kelasTeraskill.uuid == uuid) {
-                            ApiConfig.getApiService(token).uploadReceiptBuyClass(myClass.uuid, body).enqueue(object : Callback<SingleClassResponse> {
+                            ApiConfig.getApiService().uploadReceiptBuyClass(myClass.uuid, body).enqueue(object : Callback<SingleClassResponse> {
                                 override fun onResponse(
                                     call: Call<SingleClassResponse>,
                                     response: Response<SingleClassResponse>
