@@ -23,7 +23,7 @@ class SignUpViewModel(private val apiService: ApiService) : ViewModel() {
         if (file != null) {
             body = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addPart(file.toMultipartBody("avatar", "image"))
+                .addPart(file.toMultipartBody("avatar"))
                 .addFormDataPart("name", data.name!!)
                 .addFormDataPart("email", data.email)
                 .addFormDataPart("password", data.password)

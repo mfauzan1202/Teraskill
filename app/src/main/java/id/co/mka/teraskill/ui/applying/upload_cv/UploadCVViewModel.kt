@@ -6,9 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.co.mka.teraskill.data.dataclass.ApplyData
 import id.co.mka.teraskill.data.responses.MessageResponse
-import id.co.mka.teraskill.data.services.ApiConfig
 import id.co.mka.teraskill.data.services.ApiService
-import id.co.mka.teraskill.utils.toMultipartBody
+import id.co.mka.teraskill.utils.toMultipartBodyPdf
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,15 +16,14 @@ import java.io.File
 
 class UploadCVViewModel(private val apiService: ApiService): ViewModel() {
 
-    fun uploadFile(job: String, file: File, data: ApplyData, skill: String): LiveData<MessageResponse?> {
+    fun uploadFile(file: File, data: ApplyData, skill: String): LiveData<MessageResponse?> {
 
         val mutableLiveData = MutableLiveData<MessageResponse?>()
-        Log.d("TAG", "${data.birthData}")
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addPart(file.toMultipartBody("sertifikat", "pdf"))
-            .addFormDataPart("pekerjaan", job)
-            .addFormDataPart("tanggal_lahir", data.birthData)
+            .addPart(file.toMultipartBodyPdf("sertifikat"))
+            .addFormDataPart("pekerjaan", data.job)
+            .addFormDataPart("tanggal_lahir", data.birthDate)
             .addFormDataPart("alamat", data.address)
             .addFormDataPart("instansi", data.agency)
             .addFormDataPart("nama_pemilik_rekening", data.accountName)

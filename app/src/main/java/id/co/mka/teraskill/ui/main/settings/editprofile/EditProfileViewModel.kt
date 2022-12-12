@@ -65,7 +65,7 @@ class EditProfileViewModel(private val apiService: ApiService) : ViewModel() {
 
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addPart(file!!.toMultipartBody("avatar", "image"))
+            .addPart(file!!.toMultipartBody("avatar"))
             .build()
 
         apiService.updateUserAvatar(uuid, body)

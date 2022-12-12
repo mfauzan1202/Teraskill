@@ -32,7 +32,7 @@ class AddPortfolioViewModel(private val apiService: ApiService) : ViewModel() {
             .addFormDataPart("deskripsi_diri", selfDesc)
             .addFormDataPart("deskripsi_project", projectDesc)
             .addFormDataPart("link", link)
-            .addPart(image.toMultipartBody("image", "image"))
+            .addPart(image.toMultipartBody("image"))
             .build()
 
         apiService.addPortfolio(requestBody).enqueue(object : Callback<MessageResponse> {

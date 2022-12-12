@@ -11,7 +11,7 @@ data class ApplyData(
     var accountName: String,
 
     @field:SerializedName("birthDate")
-    var birthData: String,
+    var birthDate: String,
 
     @field:SerializedName("address")
     var address: String,

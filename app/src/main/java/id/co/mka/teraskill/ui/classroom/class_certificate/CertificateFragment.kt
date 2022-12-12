@@ -16,6 +16,7 @@ import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import id.co.mka.teraskill.databinding.FragmentCertificateBinding
 import id.co.mka.teraskill.utils.Preferences
@@ -43,22 +44,28 @@ class CertificateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getCertificatePDF()
         showLoading(true, requireContext())
-        binding.btnDownload.setOnClickListener {
-            //check permission
-            if (ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                //permission granted
-                startDownloading(url)
-            } else {
-                //request permission best practice
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    REQUIRED_PERMISSIONS,
-                    REQUEST_CODE_PERMISSIONS
-                )
+        binding.apply{
+            btnDownload.setOnClickListener {
+                //check permission
+                if (ContextCompat.checkSelfPermission(
+                        requireContext(),
+                        android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    //permission granted
+                    startDownloading(url)
+                } else {
+                    //request permission best practice
+                    ActivityCompat.requestPermissions(
+                        requireActivity(),
+                        REQUIRED_PERMISSIONS,
+                        REQUEST_CODE_PERMISSIONS
+                    )
+                }
+            }
+
+            ibBack.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }
